@@ -24,9 +24,10 @@ lvim.plugins = {
 
 -- general
 lvim.format_on_save = false
-lvim.lint_on_save = true
-lvim.colorscheme = "onedark"
+lvim.lint_on_save = false
+
 lvim.leader = "space"
+lvim.colorscheme = "onedark"
 vim.g.onedark_style = 'deep'
 
 lvim.builtin.dashboard.active = true
@@ -47,7 +48,6 @@ lvim.builtin.which_key.mappings["X"] = {
     c = { "<cmd>!compiler %<cr>", "compile gr, tex and md to pdf" },
     p = { "<cmd>!opout %<cr>", "open or preview corresponding pdf" },
 }
-
 
 lvim.builtin.nvimtree.width = 50
 lvim.builtin.nvimtree.quit_on_open = 1
