@@ -44,7 +44,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 lvim.builtin.which_key.mappings["c"] = { "<cmd>q!<CR>", "Quit" }
 lvim.builtin.which_key.mappings["q"] = { "<cmd>BufferClose!<CR>", "Close Buffer" }
-lvim.builtin.which_key.mappings["n"] = { '<cmd>:noh<CR>', "No Highlight" }
 
 lvim.builtin.which_key.mappings["X"] = {
   name = "Compilers",
