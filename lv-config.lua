@@ -1,7 +1,9 @@
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 lvim.plugins = {
-  {"navarasu/onedark.nvim"},
+  {
+    "navarasu/onedark.nvim"
+  },
   {"rmagatti/auto-session",
     config = function()
       require('auto-session').setup {
@@ -18,7 +20,13 @@ lvim.plugins = {
       }
   end
   },
-  {'styled-components/vim-styled-components'},
+  {
+    'styled-components/vim-styled-components'
+  },
+  -- {
+  --   "kevinhwang91/nvim-bqf",
+  --   event = "BufRead",
+  -- },
 }
 
 
@@ -42,20 +50,38 @@ lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-lvim.builtin.which_key.mappings["c"] = { "<cmd>q!<CR>", "Quit" }
-lvim.builtin.which_key.mappings["q"] = { "<cmd>BufferClose!<CR>", "Close Buffer" }
 
-lvim.builtin.which_key.mappings["X"] = {
-  name = "Compilers",
-    c = { "<cmd>!compiler %<cr>", "compile gr, tex and md to pdf" },
-    p = { "<cmd>!opout %<cr>", "open or preview corresponding pdf" },
-}
+lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
+lvim.builtin.which_key.mappings.h = nil
+lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
+lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
+lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
+lvim.builtin.which_key.mappings.r = { "<cmd>Telescope registers<cr>", "Registers" }
 
-lvim.builtin.which_key.mappings["T"] = {
+-- Buffers
+lvim.builtin.which_key.mappings.b.e = nil
+lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer" }
+
+-- Treesitter
+lvim.builtin.which_key.mappings["T"] = nil
+lvim.builtin.which_key.mappings["t"] = {
     name = "Treesitter",
       u = { ":TSUpdate<cr>", "Update" },
       i = { ":TSConfigInfo<cr>", "Info" },
 }
+
+-- Search
+lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix" }
+lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Live grep files" }
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffers" }
+lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
+lvim.builtin.which_key.mappings.s.c = nil
+lvim.builtin.which_key.mappings.s.t = nil
+lvim.builtin.which_key.mappings.s.h = nil
+lvim.builtin.which_key.mappings.s.k = nil
+lvim.builtin.which_key.mappings.s.p = nil
+lvim.builtin.which_key.mappings.s.R = nil
+lvim.builtin.which_key.mappings.s.M = nil
 
 -- lvim.keys.normal_mode = {
 --   Page down/up
