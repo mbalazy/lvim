@@ -34,6 +34,8 @@ lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.width = 50
+lvim.builtin.nvimtree.quit_on_open = 1
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -42,6 +44,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 lvim.builtin.which_key.mappings["c"] = { "<cmd>q!<CR>", "Quit" }
 lvim.builtin.which_key.mappings["q"] = { "<cmd>BufferClose!<CR>", "Close Buffer" }
+lvim.builtin.which_key.mappings["n"] = { '<cmd>:noh<CR>', "No Highlight" }
 
 lvim.builtin.which_key.mappings["X"] = {
   name = "Compilers",
@@ -49,8 +52,11 @@ lvim.builtin.which_key.mappings["X"] = {
     p = { "<cmd>!opout %<cr>", "open or preview corresponding pdf" },
 }
 
-lvim.builtin.nvimtree.width = 50
-lvim.builtin.nvimtree.quit_on_open = 1
+lvim.builtin.which_key.mappings["T"] = {
+    name = "Treesitter",
+      u = { ":TSUpdate<cr>", "Update" },
+      i = { ":TSConfigInfo<cr>", "Info" },
+}
 
 -- lvim.keys.normal_mode = {
 --   Page down/up
@@ -67,7 +73,6 @@ lvim.builtin.nvimtree.quit_on_open = 1
 -- { "<C-c>", "<ESC>" },
 -- })
 -- you can also use the native vim way directly
--- vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", { noremap = true, silent = true, expr = true })
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
