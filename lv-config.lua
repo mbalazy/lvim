@@ -22,6 +22,13 @@ lvim.plugins = {
   {
     'styled-components/vim-styled-components'
   },
+  {
+    "nvim-telescope/telescope-project.nvim",
+    event = "BufWinEnter",
+    setup = function()
+      vim.cmd [[packadd telescope.nvim]]
+    end,
+  },
   -- {
   --   "kevinhwang91/nvim-bqf",
   --   event = "BufRead",
@@ -30,7 +37,6 @@ lvim.plugins = {
 
 
 -- general
-
 vim.cmd("set number relativenumber")
 
 lvim.format_on_save = false
@@ -82,12 +88,12 @@ lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Live grep files" }
 lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffers" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
-lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Search session" }
+lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Sessions" }
+lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
 lvim.builtin.which_key.mappings.s.c = nil
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.h = nil
 lvim.builtin.which_key.mappings.s.k = nil
-lvim.builtin.which_key.mappings.s.p = nil
 lvim.builtin.which_key.mappings.s.R = nil
 lvim.builtin.which_key.mappings.s.M = nil
 
@@ -133,30 +139,6 @@ lvim.keys.normal_mode = {
 -- { "<C-s>", ":w<cr>" },
 -- { "<C-c>", "<ESC>" },
 -- })
--- you can also use the native vim way directly
-
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-
--- generic LSP settings
--- you can set a custom on_attach function that will be used for all the language servers
--- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
-
--- Additional Plugins
--- lvim.plugins = {
---     {"folke/tokyonight.nvim"}, {
---         "ray-x/lsp_signature.nvim",
---         config = function() require"lsp_signature".on_attach() end,
---         event = "InsertEnter"
---     }
--- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
