@@ -29,6 +29,37 @@ lvim.plugins = {
       vim.cmd [[packadd telescope.nvim]]
     end,
   },
+  {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        height = 14,
+        auto_close = true,
+        action_keys = { -- key mappings for actions in the trouble list
+                -- map to {} to remove a mapping, for example:
+                -- close = {},
+                close = "q", -- close the list
+                cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+                refresh = "r", -- manually refresh
+                jump = {"<cr>", "<tab>", 'l'}, -- jump to the diagnostic or open / close folds
+                open_split = { "<c-x>" }, -- open buffer in new split
+                open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+                open_tab = { "<c-t>" }, -- open buffer in new tab
+                jump_close = {"o"}, -- jump to the diagnostic and close the list
+                toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+                toggle_preview = "P", -- toggle auto_preview
+                hover = "K", -- opens a small popup with the full multiline message
+                preview = "p", -- preview the diagnostic location
+                close_folds = {"zM", "zm"}, -- close all folds
+                open_folds = {"zR", "zr"}, -- open all folds
+                toggle_fold = {"zA", "za"}, -- toggle fold of current file
+                previous = "k", -- preview item
+                next = "j" -- next item
+            },
+      }
+    end
+  }
   -- {
   --   "kevinhwang91/nvim-bqf",
   --   event = "BufRead",
@@ -38,6 +69,7 @@ lvim.plugins = {
 
 -- general
 vim.cmd("set number relativenumber")
+lvim.lsp.diagnostics.virtual_text = false
 
 lvim.format_on_save = false
 lvim.lint_on_save = false
@@ -76,12 +108,23 @@ lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferMoveNext<cr>", "Move buffer 
 lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferMovePrev<cr>", "Move buffer prev" }
 
 -- Treesitter
-lvim.builtin.which_key.mappings["T"] = nil
-lvim.builtin.which_key.mappings["t"] = {
+lvim.builtin.which_key.mappings["T"] = {
     name = "Treesitter",
       u = { ":TSUpdate<cr>", "Update" },
       i = { ":TSConfigInfo<cr>", "Info" },
 }
+
+-- Trouble
+lvim.builtin.which_key.mappings["t"] = {
+    name = "Trouble",
+      t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+      r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+      d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+      q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+      e = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+      w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+}
+
 
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix" }
