@@ -1,7 +1,9 @@
-
 lvim.plugins = {
   {
     "navarasu/onedark.nvim"
+  },
+  {
+    'folke/tokyonight.nvim'
   },
   {"rmagatti/auto-session",
     config = function()
@@ -21,6 +23,12 @@ lvim.plugins = {
   },
   {
     'styled-components/vim-styled-components'
+  },
+  {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require "surround".setup {}
+    end
   },
   {
     "nvim-telescope/telescope-project.nvim",
@@ -69,16 +77,18 @@ lvim.plugins = {
 
 -- general
 vim.cmd("set number relativenumber")
-lvim.lsp.diagnostics.virtual_text = false
+-- lvim.lsp.diagnostics.virtual_text = false
 
 lvim.format_on_save = false
 lvim.lint_on_save = false
 
 lvim.leader = "space"
+
 lvim.colorscheme = "onedark"
+vim.g.tokyonight_style = "night"
 vim.g.onedark_style = 'deep'
 
-lvim.builtin.dashboard.active = true
+lvim.builtin.dashboard.active = false
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -121,10 +131,9 @@ lvim.builtin.which_key.mappings["t"] = {
       r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
       d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
       q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-      e = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+      p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
       w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
 }
-
 
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix" }
