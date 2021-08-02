@@ -136,14 +136,16 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 -- Search
-lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix" }
+lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Live grep files" }
-lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffers" }
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffer" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
+lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_commits<cr>", "All Commits" }
+lvim.builtin.which_key.mappings.s.d = { "<cmd>Telescope git_bcommits<cr>", "Commits in this file" }
 lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Sessions" }
 lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
-lvim.builtin.which_key.mappings.s.c = nil
 lvim.builtin.which_key.mappings.s.t = nil
+lvim.builtin.which_key.mappings.s.C = nil
 lvim.builtin.which_key.mappings.s.h = nil
 lvim.builtin.which_key.mappings.s.k = nil
 lvim.builtin.which_key.mappings.s.R = nil
@@ -185,15 +187,24 @@ lvim.keys.normal_mode = {
   { "[q", ":cprev<CR>" },
   { "<C-q>", ":call QuickFixToggle()<CR>" },
 }
-
--- if you just want to augment the existing ones then use the utility function
--- require("utils").add_keymap_insert_mode({ silent = true }, {
--- { "<C-s>", ":w<cr>" },
--- { "<C-c>", "<ESC>" },
--- })
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
--- }
-
+--
+-- Setup formatters for JavaScript family
+--
+lvim.lang.javascript.formatters = {
+  {
+    exe = "prettier",
+    args = lvim.lang.javascript.formatters[1].args,
+  },
+}
+lvim.lang.typescript.formatters = lvim.lang.javascript.formatters
+lvim.lang.javascriptreact.formatters = lvim.lang.javascript.formatters
+lvim.lang.typescriptreact.formatters = lvim.lang.javascript.formatters
+lvim.lang.vue.formatters = lvim.lang.javascript.formatters
+--
+-- Setup linters for JavaScript family
+--
+lvim.lang.javascript.linters = { { exe = "eslint" } }
+lvim.lang.typescript.linters = lvim.lang.javascript.linters
+lvim.lang.javascriptreact.linters = lvim.lang.javascript.linters
+lvim.lang.typescriptreact.linters = lvim.lang.javascript.linters
+lvim.lang.vue.linters = lvim.lang.javascript.linters
