@@ -107,8 +107,6 @@ lvim.builtin.which_key.mappings.h = nil
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
 lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
-lvim.builtin.which_key.mappings.r = { "<cmd>source %<cr>", "Source me" }
-
 
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }
