@@ -106,7 +106,11 @@ lvim.builtin.which_key.mappings.h = nil
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
 lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
-lvim.builtin.which_key.mappings.r = { "<cmd>Telescope registers<cr>", "Registers" }
+lvim.builtin.which_key.mappings.r = { "<cmd>source %<cr>", "Source me" }
+
+
+-- Lsp
+lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }
 
 -- Buffers
 lvim.builtin.which_key.mappings.b.e = nil
@@ -137,24 +141,29 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
-lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Live grep files" }
-lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffer" }
+lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep in buffer" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_commits<cr>", "All Commits" }
-lvim.builtin.which_key.mappings.s.d = { "<cmd>Telescope git_bcommits<cr>", "Commits in this file" }
 lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Sessions" }
+lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_files<cr>", "Git files" }
 lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
-lvim.builtin.which_key.mappings.s.t = nil
+lvim.builtin.which_key.mappings.s.i = { "<cmd>Telescope commands<cr>", "Commands" }
+lvim.builtin.which_key.mappings.s.v = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Lvim" }
+lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s.C = nil
 lvim.builtin.which_key.mappings.s.h = nil
+lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
 lvim.builtin.which_key.mappings.s.R = nil
 lvim.builtin.which_key.mappings.s.M = nil
 
-lvim.builtin.which_key.mappings.l.l = nil
+lvim.builtin.telescope.defaults.layout_config.width = 0.9
+-- Git
+lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 
 lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
-lvim.builtin.telescope.defaults.selection_caret = "> "
+lvim.builtin.telescope.defaults.selection_caret = ">"
 
 lvim.keys.normal_mode = {
   -- Disable Move current line / block with Alt-j/k ala vscode.
