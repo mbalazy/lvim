@@ -167,10 +167,6 @@ lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 
 lvim.keys.normal_mode = {
-  -- Disable Move current line / block with Alt-j/k ala vscode.
-  [ "<A-j>" ] =  "" ,
-  [ "<A-k>" ] =  "" ,
-
   -- Better window movement
   [ "<M-h>"] = "<C-w>h",
   [ "<M-j>"] = "<C-w>j",
