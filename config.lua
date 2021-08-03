@@ -100,6 +100,7 @@ lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
+
 -- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
 lvim.builtin.which_key.mappings.h = nil
@@ -167,35 +168,66 @@ lvim.builtin.telescope.defaults.selection_caret = ">"
 
 lvim.keys.normal_mode = {
   -- Disable Move current line / block with Alt-j/k ala vscode.
-  { "<A-j>", "" },
-  { "<A-k>", "" },
+  [ "<A-j>" ] =  "" ,
+  [ "<A-k>" ] =  "" ,
 
   -- Better window movement
-  { "<M-h>", "<C-w>h", { silent = true } },
-  { "<M-j>", "<C-w>j", { silent = true } },
-  { "<M-k>", "<C-w>k", { silent = true } },
-  { "<M-l>", "<C-w>l", { silent = true } },
+  [ "<M-h>"] = "<C-w>h",
+  [ "<M-j>"] = "<C-w>j",
+  [ "<M-k>" ] = "<C-w>k",
+  [ "<M-l>" ] = "<C-w>l",
 
   -- Split windows
-  { "<M-s>", "<C-w>s", { silent = true } },
-  { "<M-v>", "<C-w>v", { silent = true } },
+  [ "<M-s>" ] = "<C-w>s",
+  [ "<M-v>" ] = "<C-w>v",
 
   -- Rotate, open/expand, close windows
-  { "<M-r>", "<C-w>r", { silent = true } },
-  { "<M-o>", "<C-w>o", { silent = true } },
-  { "<M-c>", "<C-w>c", { silent = true } },
+  [ "<M-r>" ] = "<C-w>r",
+  [ "<M-o>" ] = "<C-w>o",
+  [ "<M-c>" ] = "<C-w>c",
 
   -- Resize with arrows
-  { "<C-k>", ":resize -2<CR>" },
-  { "<C-j>", ":resize +2<CR>" },
-  { "<C-l>", ":vertical resize -2<CR>" },
-  { "<C-h>", ":vertical resize +2<CR>" },
+  [ "<C-k>" ] = ":resize -2<CR>",
+  [ "<C-j>" ] = ":resize +2<CR>",
+  [ "<C-l>" ] = ":vertical resize -2<CR>",
+  [ "<C-h>" ] = ":vertical resize +2<CR>",
 
   -- QuickFix
-  { "]q", ":cnext<CR>" },
-  { "[q", ":cprev<CR>" },
-  { "<C-q>", ":call QuickFixToggle()<CR>" },
+  [ "]q" ] = ":cnext<CR>",
+  [ "[q" ] = ":cprev<CR>",
+  [ "<C-q>" ] = ":call QuickFixToggle()<CR>",
+
+  -- Tab switch buffer
+  ["<S-l>"] = ":BufferNext<CR>",
+  ["<S-h>"] = ":BufferPrevious<CR>",
+
 }
+
+lvim.keys.insert_mode = {
+  ["jk"] = "<ESC>",
+  ["kj"] = "<ESC>",
+  ["jj"] = "<ESC>",
+
+  ["<A-h>"] = "<Left>",
+  ["<A-l>"] = "<Right>",
+  ["<A-H>"] = "<C-Left>",
+  ["<A-L>"] = "<C-Right>",
+  ["<A-j>"] = "<Down>",
+  ["<A-k>"] = "<Up>",
+
+  -- navigation
+  ["<A-Up>"] = "<C-\\><C-N><C-w>k",
+  ["<A-Down>"] = "<C-\\><C-N><C-w>j",
+  ["<A-Left>"] = "<C-\\><C-N><C-w>h",
+  ["<A-Right>"] = "<C-\\><C-N><C-w>l",
+  -- navigate tab completion with <c-j> and <c-k>
+  -- runs conditionally
+  ["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
+  ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
+}
+
+
+
 --
 -- Setup formatters for JavaScript family
 --
