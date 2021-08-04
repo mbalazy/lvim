@@ -103,6 +103,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
+lvim.builtin.which_key.mappings.C = { "<cmd>:SaveSession && :q!<CR>", "Save and close Buffer" }
 lvim.builtin.which_key.mappings.h = nil
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
@@ -165,6 +166,8 @@ lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 
 lvim.keys.normal_mode = {
+  ["<C-_>"] = ":Telescope current_buffer_fuzzy_find<cr>",
+
   -- Better window movement
   [ "<M-h>"] = "<C-w>h",
   [ "<M-j>"] = "<C-w>j",
@@ -180,7 +183,7 @@ lvim.keys.normal_mode = {
   [ "<M-o>" ] = "<C-w>o",
   [ "<M-c>" ] = "<C-w>c",
 
-  -- Resize with arrows
+  -- Resize
   [ "<C-k>" ] = ":resize -2<CR>",
   [ "<C-j>" ] = ":resize +2<CR>",
   [ "<C-l>" ] = ":vertical resize -2<CR>",
