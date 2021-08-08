@@ -103,7 +103,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
-lvim.builtin.which_key.mappings.C = { "<cmd>:SaveSession && :q!<CR>", "Save and close Buffer" }
+lvim.builtin.which_key.mappings.C = { ":SaveSession<cr> | :q!<CR>", "Save Session | Quit" }
 lvim.builtin.which_key.mappings.h = nil
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
@@ -142,14 +142,12 @@ lvim.builtin.which_key.mappings["t"] = {
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
-lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep in buffer" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_commits<cr>", "All Commits" }
 lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Sessions" }
 lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_files<cr>", "Git files" }
 lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
 lvim.builtin.which_key.mappings.s.i = { "<cmd>Telescope commands<cr>", "Commands" }
-lvim.builtin.which_key.mappings.s.v = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Lvim" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s.C = nil
 lvim.builtin.which_key.mappings.s.h = nil
@@ -166,7 +164,7 @@ lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 
 lvim.keys.normal_mode = {
-  ["<C-_>"] = ":Telescope current_buffer_fuzzy_find<cr>",
+  ["<C-_>"] = ":Telescope current_buffer_fuzzy_find sorting_strategy=ascending<cr>",
 
   -- Better window movement
   [ "<M-h>"] = "<C-w>h",
