@@ -38,6 +38,10 @@ lvim.plugins = {
     end,
   },
   {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+  },
+  {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
@@ -79,8 +83,10 @@ lvim.plugins = {
 vim.cmd("set number relativenumber")
 -- lvim.lsp.diagnostics.virtual_text = false
 
+
 lvim.format_on_save = false
 lvim.lint_on_save = false
+lvim.builtin.treesitter.autotag.enable = true
 
 lvim.leader = "space"
 
@@ -88,7 +94,6 @@ lvim.colorscheme = "onedark"
 vim.g.tokyonight_style = "night"
 vim.g.onedark_style = 'deep'
 
-lvim.builtin.dashboard.active = false
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -235,3 +240,7 @@ lvim.lang.typescript.linters = lvim.lang.javascript.linters
 lvim.lang.javascriptreact.linters = lvim.lang.javascript.linters
 lvim.lang.typescriptreact.linters = lvim.lang.javascript.linters
 lvim.lang.vue.linters = lvim.lang.javascript.linters
+
+-- Setup linters for css/html
+lvim.lang.css.formatters = { { exe = 'prettierd' } }
+lvim.lang.html.formatters = lvim.lang.css.formatters
