@@ -42,6 +42,9 @@ lvim.plugins = {
     event = "InsertEnter",
   },
   {
+    "p00f/nvim-ts-rainbow",
+  },
+  {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
@@ -83,10 +86,10 @@ lvim.plugins = {
 vim.cmd("set number relativenumber")
 -- lvim.lsp.diagnostics.virtual_text = false
 
-
 lvim.format_on_save = false
 lvim.lint_on_save = false
 lvim.builtin.treesitter.autotag.enable = true
+lvim.builtin.treesitter.rainbow.enable = true
 
 lvim.leader = "space"
 
@@ -244,3 +247,4 @@ lvim.lang.vue.linters = lvim.lang.javascript.linters
 -- Setup linters for css/html
 lvim.lang.css.formatters = { { exe = 'prettierd' } }
 lvim.lang.html.formatters = lvim.lang.css.formatters
+lvim.lang.scss = lvim.lang.css
