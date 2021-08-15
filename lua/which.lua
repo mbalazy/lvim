@@ -40,19 +40,22 @@ lvim.builtin.which_key.mappings["t"] = {
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
+lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
-lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_files<cr>", "Git files" }
 lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
 lvim.builtin.which_key.mappings.s.i = { "<cmd>Telescope commands<cr>", "Commands" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
+lvim.builtin.which_key.mappings.s.c = nil
 lvim.builtin.which_key.mappings.s.C = nil
 lvim.builtin.which_key.mappings.s.h = nil
 lvim.builtin.which_key.mappings.s.b = nil
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
 lvim.builtin.which_key.mappings.s.M = nil
-lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }
-lvim.builtin.which_key.mappings.L.s = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
+
+-- LunarVim
+lvim.builtin.which_key.mappings.L.c = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }
+lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
 
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }

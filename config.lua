@@ -24,7 +24,7 @@ lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 lvim.builtin.telescope.defaults.layout_config.width = 0.9
-lvim.builtin.telescope.defaults.file_ignore_patterns = {"NvimTree"}
+lvim.builtin.telescope.defaults.file_ignore_patterns = {"NvimTree", "node_modules"}
 
 
 require('linters')
