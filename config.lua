@@ -1,25 +1,41 @@
+
+-- general
+vim.cmd("set number relativenumber")
+lvim.builtin.compe.source.neorg = true
+
+lvim.format_on_save = false
+
+lvim.leader = "space"
+
+lvim.colorscheme = "onedark"
+vim.g.onedark_style = 'deep'
+
+lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.side = "left"
+lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.width = 50
+lvim.builtin.nvimtree.quit_on_open = 1
+
+lvim.builtin.treesitter.ensure_installed = "maintained"
+lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.autotag.enable = true
+lvim.builtin.treesitter.rainbow.enable = true
+
+lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
+lvim.builtin.telescope.defaults.selection_caret = ">"
+lvim.builtin.telescope.defaults.layout_config.width = 0.9
+lvim.builtin.telescope.defaults.file_ignore_patterns = {"NvimTree"}
+
+
+require('linters')
+require('which')
+require('keymappings')
+require('dashboard')
+-- require('norg')
+
 lvim.plugins = {
   {
     "navarasu/onedark.nvim"
-  },
-  {
-    'folke/tokyonight.nvim'
-  },
-  {"rmagatti/auto-session",
-    config = function()
-      require('auto-session').setup {
-          auto_save_enabled = false,
-          auto_restore_enabled = true,
-      }
-        end
-  },
-  {
-  'rmagatti/session-lens',
-  config = function()
-    require('session-lens').setup {
-        path_display={'shorten'},
-      }
-  end
   },
   {
     'styled-components/vim-styled-components'
@@ -79,7 +95,6 @@ lvim.plugins = {
       "vhyrro/neorg",
       config = function()
           require('neorg').setup {
-              -- Tell Neorg what modules to load
               load = {
                   ["core.defaults"] = {}, -- Load all the default modules
                   ["core.norg.concealer"] = {}, -- Allows for use of icons
@@ -102,36 +117,3 @@ lvim.plugins = {
       requires = "nvim-lua/plenary.nvim"
   }
 }
-
-
--- general
-vim.cmd("set number relativenumber")
-lvim.builtin.dashboard.active = true
-lvim.builtin.compe.source.neorg = true
-
-lvim.format_on_save = false
-
-lvim.leader = "space"
-
-lvim.colorscheme = "onedark"
-vim.g.tokyonight_style = "night"
-vim.g.onedark_style = 'deep'
-
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.nvimtree.width = 50
-lvim.builtin.nvimtree.quit_on_open = 1
-
-lvim.builtin.treesitter.ensure_installed = "maintained"
-lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.treesitter.autotag.enable = true
-lvim.builtin.treesitter.rainbow.enable = true
-
-lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
-lvim.builtin.telescope.defaults.selection_caret = ">"
-lvim.builtin.telescope.defaults.layout_config.width = 0.9
-
-require('linters')
-require('which')
-require('keymappings')

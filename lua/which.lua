@@ -1,7 +1,8 @@
--- Additional Leader bindings for WhichKey
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
-lvim.builtin.which_key.mappings.C = { ":SaveSession<cr> | :q!<CR>", "Save Session and Quit" }
 lvim.builtin.which_key.mappings.h = nil
+
+-- Git files instead of find_files
+lvim.builtin.which_key.mappings.f = { "<cmd>Telescope git_files<cr>", "Find File" }
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
 lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
@@ -40,8 +41,6 @@ lvim.builtin.which_key.mappings["t"] = {
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
-lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_commits<cr>", "All Commits" }
-lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope session-lens search_session<cr>", "Sessions" }
 lvim.builtin.which_key.mappings.s.c = { "<cmd>Telescope git_files<cr>", "Git files" }
 lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
 lvim.builtin.which_key.mappings.s.i = { "<cmd>Telescope commands<cr>", "Commands" }
@@ -52,6 +51,8 @@ lvim.builtin.which_key.mappings.s.b = nil
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
 lvim.builtin.which_key.mappings.s.M = nil
+lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }
+lvim.builtin.which_key.mappings.L.s = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
 
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
