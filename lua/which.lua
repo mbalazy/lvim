@@ -12,7 +12,6 @@ lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "
 
 -- Buffers
 lvim.builtin.which_key.mappings.b.e = nil
-lvim.builtin.which_key.mappings.b.D = nil
 lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
 lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferCloseBuffersLeft<cr>", "Close all buffers to the left" }
 lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferCloseBuffersRight<cr>", "Close all buffers to the right" }
@@ -42,16 +41,10 @@ lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
 lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
-lvim.builtin.which_key.mappings.s.p = { ":lua require'telescope'.extensions.project.project{}<CR>", "Projects" }
-lvim.builtin.which_key.mappings.s.i = { "<cmd>Telescope commands<cr>", "Commands" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
-lvim.builtin.which_key.mappings.s.c = nil
-lvim.builtin.which_key.mappings.s.C = nil
-lvim.builtin.which_key.mappings.s.h = nil
-lvim.builtin.which_key.mappings.s.b = nil
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffer" }
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
-lvim.builtin.which_key.mappings.s.M = nil
 
 -- LunarVim
 lvim.builtin.which_key.mappings.L.c = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }

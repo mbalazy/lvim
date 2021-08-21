@@ -29,9 +29,8 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {"NvimTree", "node_module
 
 require('linters')
 require('which')
-require('keymappings')
+require('keys')
 require('dashboard')
--- require('norg')
 
 lvim.plugins = {
   {
@@ -45,13 +44,6 @@ lvim.plugins = {
     config = function()
       require "surround".setup {}
     end
-  },
-  {
-    "nvim-telescope/telescope-project.nvim",
-    event = "BufWinEnter",
-    setup = function()
-      vim.cmd [[packadd telescope.nvim]]
-    end,
   },
   {
     "windwp/nvim-ts-autotag",
