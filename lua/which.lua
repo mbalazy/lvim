@@ -30,6 +30,7 @@ lvim.builtin.which_key.mappings["t"] = {
     name = "Trouble",
       t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
       r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+      i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
       d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
       q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
       p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
@@ -43,6 +44,7 @@ lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find f
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffer" }
+lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
 

@@ -5,13 +5,17 @@ lvim.builtin.dashboard.custom_section = {
         command = "Telescope oldfiles",
       },
       c = {
-        description = { "  Load Last Session  " },
-        command = "SessionLoad",
+        description = { "  Recent Projects    " },
+        command = "Telescope projects",
       },
-      e = {
-        description = { "  Save Curr Session  " },
-        command = "SessionSave",
-      },
+      -- c = {
+      --   description = { "  Load Last Session  " },
+      --   command = "SessionLoad",
+      -- },
+      -- e = {
+      --   description = { "  Save Curr Session  " },
+      --   command = "SessionSave",
+      -- },
       i = {
         description = { "  Find File          " },
         command = "Telescope find_files",
