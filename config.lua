@@ -7,6 +7,7 @@ lvim.format_on_save = false
 lvim.leader = "space"
 
 lvim.colorscheme = "onedark"
+vim.g.onedark_transparent_background = false
 vim.g.onedark_style = 'deep'
 
 lvim.builtin.terminal.active = true
@@ -25,6 +26,15 @@ lvim.builtin.telescope.defaults.selection_caret = ">"
 lvim.builtin.telescope.defaults.layout_config.width = 0.9
 lvim.builtin.telescope.defaults.file_ignore_patterns = {"NvimTree", "node_modules"}
 
+local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+
+parser_configs.norg = {
+    install_info = {
+        url = "https://github.com/vhyrro/tree-sitter-norg",
+        files = { "src/parser.c", "src/scanner.cc" },
+        branch = "main"
+    },
+}
 
 require('linters')
 require('which')
