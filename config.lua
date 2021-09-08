@@ -1,6 +1,5 @@
 -- general
 vim.cmd("set number relativenumber")
-lvim.builtin.compe.source.neorg = true
 
 lvim.format_on_save = false
 
@@ -92,29 +91,4 @@ lvim.plugins = {
       }
     end
   },
-  {
-      "vhyrro/neorg",
-      config = function()
-          require('neorg').setup {
-              load = {
-                  ["core.defaults"] = {}, -- Load all the default modules
-                  ["core.norg.concealer"] = {}, -- Allows for use of icons
-                  ["core.keybinds"] = { -- Configure core.keybinds
-                    config = {
-                        default_keybinds = true, -- Generate the default keybinds
-                    }
-                },
-                  ["core.norg.dirman"] = { -- Manage your directories with Neorg
-                      config = {
-                          workspaces = {
-                              my_workspace = "~/neorg"
-                          }
-                      }
-                  }
-              },
-          }
-      end,
-      after = "nvim-compe",
-      requires = "nvim-lua/plenary.nvim"
-  }
 }
