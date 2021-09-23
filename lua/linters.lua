@@ -1,5 +1,5 @@
 -- Setup formatters for JavaScript family
-lvim.lang.javascript.formatters = { {exe = "prettierd"} }
+lvim.lang.javascript.formatters = { { exe = "prettierd" } }
 lvim.lang.typescript.formatters = lvim.lang.javascript.formatters
 lvim.lang.javascriptreact.formatters = lvim.lang.javascript.formatters
 lvim.lang.typescriptreact.formatters = lvim.lang.javascript.formatters
@@ -13,9 +13,10 @@ lvim.lang.typescriptreact.linters = lvim.lang.javascript.linters
 lvim.lang.vue.linters = lvim.lang.javascript.linters
 
 -- Setup linters for css/html
-lvim.lang.css.formatters = { { exe = 'prettierd' } }
+lvim.lang.css.formatters = { { exe = "prettierd" } }
 lvim.lang.html.formatters = lvim.lang.css.formatters
 lvim.lang.scss = lvim.lang.css
 
-lvim.lang.json.formatters = { { exe = 'prettierd' } }
+lvim.lang.json.formatters = { { exe = "prettierd" } }
 -- lvim.lang.json.formatters = { { exe = 'json_tool│prettierd│prettier' } }
+lvim.lang.lua.formatters = { { exe = "stylua" } }

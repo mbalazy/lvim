@@ -20,21 +20,21 @@ lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferMovePrev<cr>", "Move buffer 
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
-    name = "Treesitter",
-      u = { ":TSUpdate<cr>", "Update" },
-      i = { ":TSConfigInfo<cr>", "Info" },
+	name = "Treesitter",
+	u = { ":TSUpdate<cr>", "Update" },
+	i = { ":TSConfigInfo<cr>", "Info" },
 }
 
 -- Trouble
 lvim.builtin.which_key.mappings["t"] = {
-    name = "Trouble",
-      t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-      r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-      i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
-      d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
-      q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-      p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
-      w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+	name = "Trouble",
+	t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+	r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+	i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
+	d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+	q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+	p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+	w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
 }
 
 -- Search
