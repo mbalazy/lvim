@@ -37,7 +37,6 @@ parser_configs.norg = {
 
 require("linters")
 require("which")
-require("keys")
 require("dashboard")
 
 lvim.plugins = {
