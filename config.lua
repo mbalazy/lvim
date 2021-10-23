@@ -12,7 +12,7 @@ vim.g.onedark_style = "deep"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.nvimtree.width = 50
+lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.quit_on_open = 1
 
 lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -24,16 +24,6 @@ lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 lvim.builtin.telescope.defaults.layout_config.width = 0.9
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modules" }
-
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_configs.norg = {
-	install_info = {
-		url = "https://github.com/vhyrro/tree-sitter-norg",
-		files = { "src/parser.c", "src/scanner.cc" },
-		branch = "main",
-	},
-}
 
 require("linters")
 require("which")
@@ -55,18 +45,6 @@ lvim.plugins = {
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
-	},
-	{
-		"nanotee/sqls.nvim",
-		config = function()
-			require("lspconfig").sqls.setup({
-				on_attach = function(client)
-					client.resolved_capabilities.execute_command = true
-
-					require("sqls").setup({ picker = "default" })
-				end,
-			})
-		end,
 	},
 	{
 		"p00f/nvim-ts-rainbow",
