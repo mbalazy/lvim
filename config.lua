@@ -12,7 +12,7 @@ vim.g.onedark_style = "deep"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.setup.view.width = 50
 lvim.builtin.nvimtree.quit_on_open = 1
 
 lvim.builtin.treesitter.ensure_installed = "maintained"

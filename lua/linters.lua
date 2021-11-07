@@ -10,6 +10,8 @@ formatters.setup({
 			"typescript",
 			"json",
 			"markdown",
+      "css",
+      "scss"
 		},
 	},
 })
@@ -28,12 +30,3 @@ linters.setup({
 		},
 	},
 })
-
--- Setup linters for css/html
-lvim.lang.css.formatters = { { exe = "prettierd" } }
-lvim.lang.html.formatters = lvim.lang.css.formatters
-lvim.lang.scss = lvim.lang.css
-
-lvim.lang.json.formatters = { { exe = "prettierd" } }
--- lvim.lang.json.formatters = { { exe = 'json_tool│prettierd│prettier' } }
-lvim.lang.lua.formatters = { { exe = "stylua" } }

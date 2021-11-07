@@ -50,6 +50,7 @@ lvim.builtin.which_key.mappings.s.k = nil
 
 -- LunarVim
 lvim.builtin.which_key.mappings.L.c = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }
+lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
 lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
 
 -- Git
