@@ -1,4 +1,3 @@
--- Setup formatters for JavaScript family
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
@@ -16,7 +15,6 @@ formatters.setup({
 	},
 })
 
--- ESLint
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
 	{
