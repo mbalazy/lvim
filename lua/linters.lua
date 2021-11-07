@@ -9,8 +9,14 @@ formatters.setup({
 			"typescript",
 			"json",
 			"markdown",
-      "css",
-      "scss"
+			"css",
+			"scss",
+		},
+	},
+	{
+		exe = "stylua",
+		filetypes = {
+			"lua",
 		},
 	},
 })
