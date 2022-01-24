@@ -7,10 +7,16 @@ formatters.setup({
 			"javascript",
 			"typescriptreact",
 			"typescript",
-			"json",
 			"markdown",
 			"css",
 			"scss",
+		},
+	},
+	{
+		exe = "fixjson",
+		filetypes = {
+			"json",
+			"jsonc",
 		},
 	},
 	{

@@ -9,6 +9,8 @@ lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "
 
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }
+lvim.builtin.which_key.mappings.l.o = { "<cmd>TSLspOrganize<cr>", "Organize imports" }
+lvim.builtin.which_key.mappings.l.O = { "<cmd>TSLspImportAll<cr>", "Import all" }
 
 -- Buffers
 lvim.builtin.which_key.mappings.b.e = nil
@@ -49,9 +51,8 @@ lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
 
 -- LunarVim
-lvim.builtin.which_key.mappings.L.c = { "<cmd>Telescope find_files cwd=~/.config/lvim<cr>", "Find in config.lua" }
-lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
-lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
+-- lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
+-- lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
 
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
