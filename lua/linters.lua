@@ -10,6 +10,8 @@ formatters.setup({
 			"markdown",
 			"css",
 			"scss",
+      "yaml",
+      "graphql"
 		},
 	},
 	{
@@ -37,6 +39,7 @@ linters.setup({
 			"typescriptreact",
 			"typescript",
 			"vue",
+      "yaml"
 		},
 	},
 })

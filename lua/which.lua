@@ -4,7 +4,7 @@ lvim.builtin.which_key.mappings.h = nil
 -- Git files instead of find_files
 lvim.builtin.which_key.mappings.f = { "<cmd>Telescope git_files<cr>", "Find File" }
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
-lvim.builtin.which_key.mappings.q = { "<cmd>BufferClose!<CR>", "Close Buffer" }
+lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
 
 -- Lsp
@@ -14,11 +14,12 @@ lvim.builtin.which_key.mappings.l.O = { "<cmd>TSLspImportAll<cr>", "Import all" 
 
 -- Buffers
 lvim.builtin.which_key.mappings.b.e = nil
-lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
-lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferCloseBuffersLeft<cr>", "Close all buffers to the left" }
-lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferCloseBuffersRight<cr>", "Close all buffers to the right" }
-lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferMoveNext<cr>", "Move buffer next" }
-lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferMovePrev<cr>", "Move buffer prev" }
+-- lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
+lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
+lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
+
+-- lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCyclePrev<cr>", "Move buffer next" }
+-- lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferMovePrev<cr>", "Move buffer prev" }
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {

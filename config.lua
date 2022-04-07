@@ -6,13 +6,16 @@ lvim.format_on_save = false
 lvim.leader = "space"
 
 lvim.colorscheme = "onedark"
+require("onedark").setup({
+	style = "deep",
+})
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.width = 50
 
-lvim.builtin.nvimtree.quit_on_open = 1
+lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.highlight.enabled = true
@@ -26,11 +29,8 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modul
 
 require("linters")
 require("which")
-require("dashboard")
+-- require("dashboard")
 
-require("onedark").setup({
-	style = "deep",
-})
 
 lvim.plugins = {
 	{
@@ -43,7 +43,7 @@ lvim.plugins = {
 	-- 	"styled-components/vim-styled-components",
 	-- },
 	{
-		"blackCauldron7/surround.nvim",
+		"ur4ltz/surround.nvim",
 		config = function()
 			require("surround").setup({})
 		end,

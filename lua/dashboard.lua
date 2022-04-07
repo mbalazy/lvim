@@ -1,5 +1,4 @@
-lvim.builtin.dashboard.active = true
-lvim.builtin.dashboard.custom_section = {
+lvim.builtin.alpha.dashboard.section.buttons = {
 	a = {
 		description = { "  Recently Used Files" },
 		command = "Telescope oldfiles",
