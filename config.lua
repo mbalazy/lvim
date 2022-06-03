@@ -15,7 +15,7 @@ lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.width = 50
 
-lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
+-- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.highlight.enabled = true
@@ -29,7 +29,6 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modul
 
 require("linters")
 require("which")
-
 
 lvim.plugins = {
 	{
@@ -50,5 +49,13 @@ lvim.plugins = {
 	},
 	{
 		"p00f/nvim-ts-rainbow",
+	},
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "info",
+			})
+		end,
 	},
 }
