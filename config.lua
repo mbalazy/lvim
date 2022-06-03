@@ -15,6 +15,8 @@ lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 50
 
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
+-- lvim.builtin.nvimtree.setup.diagnostics.enable = true
+-- lvim.builtin.nvimtree.setup.diagnostics.show_on_dirs = false
 
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.autotag.enable = true
@@ -24,6 +26,19 @@ lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
 lvim.builtin.telescope.defaults.layout_config.width = 0.9
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modules" }
+
+-- automatically close the tab/vim when nvim-tree is the last window in the tab
+vim.api.nvim_create_autocmd("BufEnter", {
+	nested = true,
+	callback = function()
+		if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+			vim.cmd("quit")
+		end
+	end,
+})
+
+-- load snippets
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/package.json" } })
 
 require("linters")
 require("which")
