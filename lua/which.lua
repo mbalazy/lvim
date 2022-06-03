@@ -1,3 +1,4 @@
+lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
 lvim.builtin.which_key.mappings.h = nil
 
@@ -5,7 +6,6 @@ lvim.builtin.which_key.mappings.h = nil
 lvim.builtin.which_key.mappings.f = { "<cmd>Telescope git_files<cr>", "Find File" }
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
-lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
 
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }

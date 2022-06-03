@@ -12,12 +12,10 @@ require("onedark").setup({
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.setup.view.width = 50
 
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
-lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.rainbow.enable = true
@@ -37,12 +35,7 @@ lvim.plugins = {
 	{
 		"jose-elias-alvarez/nvim-lsp-ts-utils",
 	},
-	{
-		"ur4ltz/surround.nvim",
-		config = function()
-			require("surround").setup({})
-		end,
-	},
+	{ "tpope/vim-surround" },
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
