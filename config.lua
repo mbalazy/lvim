@@ -13,6 +13,8 @@ require("onedark").setup({
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 50
+lvim.builtin.nvimtree.setup.reload_on_bufenter = true
+-- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.autotag.enable = true
@@ -39,7 +41,7 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/package
 require("linters")
 require("which")
 require("lspTs")
-require("cmp")
+require("cmpMappings")
 
 lvim.plugins = {
   {
