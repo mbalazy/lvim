@@ -9,8 +9,11 @@ lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }
-lvim.builtin.which_key.mappings.l.o = { "<cmd>TSLspOrganize<cr>", "Organize imports" }
+lvim.builtin.which_key.mappings.l.c = { "<cmd>TSLspOrganize<cr>", "Organize imports" }
+lvim.builtin.which_key.mappings.l.o = { "<cmd>TSLspImportCurrent<cr>", "Import current" }
 lvim.builtin.which_key.mappings.l.O = { "<cmd>TSLspImportAll<cr>", "Import all" }
+lvim.builtin.which_key.mappings.l.R = { "<cmd>TSLspRenameFile<cr>", "Change file path" }
+-- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
 
 -- Buffers
 lvim.builtin.which_key.mappings.b.e = nil
@@ -23,21 +26,21 @@ lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineCloseRight<cr>", "Close 
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
-	name = "Treesitter",
-	u = { ":TSUpdate<cr>", "Update" },
-	i = { ":TSConfigInfo<cr>", "Info" },
+  name = "Treesitter",
+  u = { ":TSUpdate<cr>", "Update" },
+  i = { ":TSConfigInfo<cr>", "Info" },
 }
 
 -- Trouble
 lvim.builtin.which_key.mappings["t"] = {
-	name = "Trouble",
-	t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-	r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-	i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
-	d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
-	q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-	p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
-	w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+  name = "Trouble",
+  t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+  i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
+  d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+  p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+  w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
 }
 
 -- Search
