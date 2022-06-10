@@ -7,7 +7,7 @@ lvim.leader = "space"
 
 lvim.colorscheme = "onedark"
 require("onedark").setup({
-  style = "deep",
+	style = "deep",
 })
 
 lvim.builtin.terminal.active = true
@@ -27,12 +27,12 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modul
 
 -- automatically close the tab/vim when nvim-tree is the last window in the tab
 vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd("quit")
-    end
-  end,
+	nested = true,
+	callback = function()
+		if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+			vim.cmd("quit")
+		end
+	end,
 })
 
 -- load snippets
@@ -44,26 +44,26 @@ require("lspTs")
 require("cmpMappings")
 
 lvim.plugins = {
-  {
-    "navarasu/onedark.nvim",
-  },
-  {
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-  },
-  { "tpope/vim-surround" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-  },
-  {
-    "p00f/nvim-ts-rainbow",
-  },
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "info",
-      })
-    end,
-  },
+	{
+		"navarasu/onedark.nvim",
+	},
+	{
+		"jose-elias-alvarez/nvim-lsp-ts-utils",
+	},
+	{ "tpope/vim-surround" },
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+	},
+	{
+		"p00f/nvim-ts-rainbow",
+	},
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "info",
+			})
+		end,
+	},
 }
