@@ -12,7 +12,7 @@ require("onedark").setup({
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.setup.view.width = 50
+lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 

@@ -4,5 +4,11 @@
     "body": [
       "($1) => $2"
     ]
+  },
+  "return": {
+    "prefix": "r",
+    "body": [
+      "return "
+    ]
   }
 }
