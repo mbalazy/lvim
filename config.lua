@@ -38,12 +38,23 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- load snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/package.json" } })
 
+
+
+require("nvim-gps").setup()
+
 require("linters")
 require("which")
 require("lspTs")
 require("cmpMappings")
 
 lvim.plugins = {
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+	},
+	{
+		"SmiteshP/nvim-gps",
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
 	{
 		"navarasu/onedark.nvim",
 	},
