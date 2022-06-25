@@ -38,8 +38,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- load snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/package.json" } })
 
-
-
 require("nvim-gps").setup()
 
 require("linters")
