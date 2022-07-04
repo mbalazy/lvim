@@ -64,7 +64,7 @@ lvim.builtin.which_key.mappings.s.k = nil
 
 -- LunarVim
 -- lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
--- lvim.builtin.which_key.mappings.L.C = { "<cmd>Telescope live_grep cwd=~/.config/lvim<cr>", "Grep in config.lua" }
+lvim.builtin.which_key.mappings.L.n = { "<cmd>set rnu!<cr>", "Toggle relative numbers" }
 
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
