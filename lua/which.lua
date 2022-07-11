@@ -69,3 +69,7 @@ lvim.builtin.which_key.mappings.L.n = { "<cmd>set rnu!<cr>", "Toggle relative nu
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
+
+-- LunarVim keybindings
+lvim.keys.normal_mode['('] = "6j"
+lvim.keys.normal_mode[')'] = "6k"
