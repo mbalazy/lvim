@@ -66,10 +66,16 @@ lvim.builtin.which_key.mappings.s.k = nil
 -- lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
 lvim.builtin.which_key.mappings.L.n = { "<cmd>set rnu!<cr>", "Toggle relative numbers" }
 
+-- builtin vim
+lvim.builtin.which_key.mappings["v"] = {
+	name = "Search and replace",
+	f = { ":%s/", "Find each occurrence" },
+}
+
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
 
 -- LunarVim keybindings
-lvim.keys.normal_mode['('] = "6j"
-lvim.keys.normal_mode[')'] = "6k"
+lvim.keys.normal_mode["("] = "6j"
+lvim.keys.normal_mode[")"] = "6k"
