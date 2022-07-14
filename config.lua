@@ -47,6 +47,7 @@ lvim.plugins = {
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 	},
+
 	{
 		"SmiteshP/nvim-gps",
 		requires = "nvim-treesitter/nvim-treesitter",
@@ -58,6 +59,7 @@ lvim.plugins = {
 		"jose-elias-alvarez/nvim-lsp-ts-utils",
 	},
 	{ "tpope/vim-surround" },
+	{ "lukas-reineke/indent-blankline.nvim" },
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
@@ -77,6 +79,12 @@ lvim.plugins = {
 		end,
 	},
 }
+
+require("indent_blankline").setup({
+	filetype = { "yaml", "yml" },
+	show_current_context = false,
+	show_trailing_blankline_indent = false,
+})
 
 -- debugging
 lvim.builtin.dap.active = true
