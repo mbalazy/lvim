@@ -1,4 +1,15 @@
 local formatters = require("lvim.lsp.null-ls.formatters")
+
+-- disabling tsserver language server formatting capabilities if you are using prettier/prettierd as formatter
+lvim.lsp.on_attach_callback = function(client, _)
+	if client.name ~= "tsserver" then
+		return
+	end
+
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
+end
+
 formatters.setup({
 	{
 		exe = "prettierd",
@@ -12,6 +23,17 @@ formatters.setup({
 			"scss",
 			"yaml",
 			"graphql",
+		},
+	},
+	{
+		exe = "eslint_d",
+		filetypes = {
+			"javascriptreact",
+			"javascript",
+			"typescriptreact",
+			"typescript",
+			"vue",
+			"yaml",
 		},
 	},
 	{
