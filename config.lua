@@ -1,7 +1,7 @@
 -- general
 vim.cmd("set number relativenumber")
 
--- lvim.format_on_save = false
+lvim.format_on_save = false
 
 lvim.leader = "space"
 
