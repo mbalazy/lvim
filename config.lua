@@ -1,5 +1,6 @@
 -- general
 vim.cmd("set number relativenumber")
+vim.lsp.set_log_level("debug")
 
 lvim.format_on_save = false
 
