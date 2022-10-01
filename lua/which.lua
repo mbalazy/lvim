@@ -24,8 +24,8 @@ lvim.builtin.which_key.mappings.b.e = nil
 lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
 lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
 
--- lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCyclePrev<cr>", "Move buffer next" }
--- lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferMovePrev<cr>", "Move buffer prev" }
+lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
+lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
