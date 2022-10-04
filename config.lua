@@ -6,10 +6,11 @@ lvim.format_on_save = false
 
 lvim.leader = "space"
 
-lvim.colorscheme = "onedark"
-require("onedark").setup({
-  style = "deep",
-})
+lvim.colorscheme = "horizon"
+-- lvim.colorscheme = "onedark"
+-- require("onedark").setup({
+--   style = "deep",
+-- })
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
@@ -57,6 +58,9 @@ lvim.plugins = {
   },
   {
     "navarasu/onedark.nvim",
+  },
+  {
+    "lunarvim/horizon.nvim",
   },
   {
     "jose-elias-alvarez/nvim-lsp-ts-utils",

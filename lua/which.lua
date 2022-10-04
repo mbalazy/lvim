@@ -18,14 +18,18 @@ lvim.builtin.which_key.mappings.l.O = { "<cmd>TSLspImportAll<cr>", "Import all" 
 lvim.builtin.which_key.mappings.l.R = { "<cmd>TSLspRenameFile<cr>", "Change file path" }
 -- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
 
--- Buffers
+-- Buffers hjkl
 lvim.builtin.which_key.mappings.b.e = nil
+lvim.builtin.which_key.mappings.b.n = nil -- next
+lvim.builtin.which_key.mappings.b.b = nil -- prev
 -- lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
-lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
-lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
+lvim.builtin.which_key.mappings.b.j= { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
+lvim.builtin.which_key.mappings.b.k= { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
+lvim.builtin.which_key.mappings.b.p= { "<cmd>BufferLineTogglePin<cr>", "Toggle pin" }
 
-lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
-lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
+lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
+lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
+
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
