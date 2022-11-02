@@ -1,20 +1,20 @@
 -- general
 vim.cmd("set number relativenumber")
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 
 lvim.format_on_save = false
 
 lvim.leader = "space"
 
 lvim.colorscheme = "horizon"
--- lvim.colorscheme = "onedark"
+-- lvim.colorscheme = "onedarker"
 -- require("onedark").setup({
 --   style = "deep",
 -- })
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.setup.view.width = 54
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
@@ -27,74 +27,83 @@ lvim.builtin.telescope.defaults.selection_caret = ">"
 lvim.builtin.telescope.defaults.layout_config.width = 0.9
 lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modules", ".yarn" }
 
-lvim.lsp.automatic_servers_installation = false
+local components = require("lvim.core.lualine.components")
+
+lvim.builtin.lualine.sections.lualine_b = {
+	{ "filename", file_status = true, newfile_status = false, path = 3, shorting_target = 30 },
+	components.branch,
+}
+
+lvim.builtin.lualine.sections.lualine_y = {
+	components.location,
+}
 
 -- automatically close the tab/vim when nvim-tree is the last window in the tab
 vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd("quit")
-    end
-  end,
+	nested = true,
+	callback = function()
+		if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+			vim.cmd("quit")
+		end
+	end,
 })
 
 -- load snippets
--- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/package.json" } })
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
 
 require("linters")
 require("which")
-require("lspTs")
+-- require("lspTs")
 require("cmpMappings")
 
 lvim.plugins = {
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-  },
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+	},
 
-  {
-    "SmiteshP/nvim-gps",
-    requires = "nvim-treesitter/nvim-treesitter",
-  },
-  {
-    "navarasu/onedark.nvim",
-  },
-  {
-    "lunarvim/horizon.nvim",
-  },
-  {
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-  },
-  { "tpope/vim-surround" },
-  { "lukas-reineke/indent-blankline.nvim" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-  },
-  {
-    "p00f/nvim-ts-rainbow",
-  },
-  -- { "Pocco81/DAPInstall.nvim", branch = "dev" },
-  { "David-Kunz/jester" },
-  -- { "rcarriga/nvim-dap-ui" },
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "info",
-      })
-    end,
-  },
+	{
+		"SmiteshP/nvim-gps",
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
+	{
+		"navarasu/onedark.nvim",
+	},
+	{
+		"lunarvim/horizon.nvim",
+	},
+	{
+		"jose-elias-alvarez/nvim-lsp-ts-utils",
+	},
+	{ "tpope/vim-surround" },
+	{ "lukas-reineke/indent-blankline.nvim" },
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+	},
+	{
+		"p00f/nvim-ts-rainbow",
+	},
+	-- { "Pocco81/DAPInstall.nvim", branch = "dev" },
+	{ "David-Kunz/jester" },
+	-- { "rcarriga/nvim-dap-ui" },
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "info",
+			})
+		end,
+	},
 }
 
 require("indent_blankline").setup({
-  filetype = { "yaml", "yml" },
-  show_current_context = false,
-  show_trailing_blankline_indent = false,
+	filetype = { "yaml", "yml" },
+	show_current_context = false,
+	show_trailing_blankline_indent = false,
 })
 
 -- debugging
-lvim.builtin.dap.active = true
+-- lvim.builtin.dap.active = true
 -- local dap = require("dap")
 
 -- require("dap").set_log_level("TRACE")
