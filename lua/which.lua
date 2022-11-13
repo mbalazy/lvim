@@ -30,12 +30,21 @@ lvim.builtin.which_key.mappings.b.p= { "<cmd>BufferLineTogglePin<cr>", "Toggle p
 lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
 lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
 
-
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
 	name = "Treesitter",
 	u = { ":TSUpdate<cr>", "Update" },
 	i = { ":TSConfigInfo<cr>", "Info" },
+}
+
+-- Treesitter
+lvim.builtin.which_key.mappings["h"] = {
+	name = "Harpoon",
+	a = { ":lua require('harpoon.mark').add_file()<cr>", "Add file" },
+	o = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open Menu" },
+	k = { ":lua require('harpoon.ui').nav_next() <cr>", "Next" },
+	j = { ":lua require('harpoon.ui').nav_prev() <cr>", "Prev" },
+	h = { ":Telescope harpoon marks<cr>", "Search marks" },
 }
 
 -- Trouble

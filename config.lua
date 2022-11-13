@@ -11,6 +11,7 @@ lvim.colorscheme = "horizon"
 -- require("onedark").setup({
 --   style = "deep",
 -- })
+vim.opt.scrolloff = 16
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
@@ -50,6 +51,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- load snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
+require("telescope").load_extension('harpoon')
 
 require("linters")
 require("which")
@@ -67,6 +69,9 @@ lvim.plugins = {
 	},
 	{
 		"navarasu/onedark.nvim",
+	},
+	{
+		"ThePrimeagen/harpoon",
 	},
 	{
 		"lunarvim/horizon.nvim",
