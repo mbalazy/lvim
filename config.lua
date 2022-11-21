@@ -17,6 +17,8 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 54
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
+lvim.builtin.nvimtree.setup.auto_reload_on_write = true
+
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
 lvim.builtin.treesitter.highlight.enabled = true

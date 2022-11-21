@@ -1,3 +1,4 @@
+lvim.keys.insert_mode["kj"] = "<Esc>"
 lvim.builtin.which_key.mappings[":"] = { "<cmd>Telescope command_history<cr>", "Commands history" }
 lvim.builtin.which_key.mappings.c = { "<cmd>q!<CR>", "Quit" }
 lvim.builtin.which_key.mappings.h = nil
@@ -23,9 +24,9 @@ lvim.builtin.which_key.mappings.b.e = nil
 lvim.builtin.which_key.mappings.b.n = nil -- next
 lvim.builtin.which_key.mappings.b.b = nil -- prev
 -- lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
-lvim.builtin.which_key.mappings.b.j= { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
-lvim.builtin.which_key.mappings.b.k= { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
-lvim.builtin.which_key.mappings.b.p= { "<cmd>BufferLineTogglePin<cr>", "Toggle pin" }
+lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
+lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
+lvim.builtin.which_key.mappings.b.p = { "<cmd>BufferLineTogglePin<cr>", "Toggle pin" }
 
 lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
 lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCloseRight<cr>", "Close all buffers to the right" }
@@ -92,3 +93,36 @@ lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffe
 -- LunarVim keybindings
 lvim.keys.normal_mode["("] = "6j"
 lvim.keys.normal_mode[")"] = "6k"
+
+lvim.builtin.telescope = {
+	active = true,
+	defaults = {
+		layout_strategy = "horizontal",
+		layout_config = {
+			width = 0.99,
+			height = 0.80,
+			preview_cutoff = 120,
+			preview_width = 0.55,
+			prompt_position = "bottom",
+		},
+	},
+	pickers = {
+		git_files = {
+			hidden = true,
+		},
+		live_grep = {
+			hidden = true,
+		},
+	},
+}
+
+-- lvim.builtin.telescope.pickers.git_files = {
+-- 	layout_strategy = "horizontal",
+-- 	layout_config = {
+-- 		width = 0.90,
+-- 		height = 0.80,
+-- 		preview_cutoff = 120,
+-- 		preview_width = 0.6,
+-- 		prompt_position = "bottom",
+-- 	},
+-- }

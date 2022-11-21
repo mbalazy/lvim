@@ -5,6 +5,19 @@
       "($1) => $2"
     ]
   },
+  "Console.log using inspect": {
+    "prefix": "cli",
+    "body": [
+      "import util from 'util'",
+      "console.log(util.inspect($0, false, null, true))"
+    ]
+  },
+  "Console.log": {
+    "prefix": "cl",
+    "body": [
+      "console.log($0)"
+    ]
+  },
   "return": {
     "prefix": "r",
     "body": [
