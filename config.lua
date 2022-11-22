@@ -54,10 +54,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- load snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
 require("telescope").load_extension('harpoon')
+require("typescript").setup({})
 
 require("linters")
 require("which")
--- require("lspTs")
 require("cmpMappings")
 
 lvim.plugins = {
@@ -79,10 +79,9 @@ lvim.plugins = {
 		"lunarvim/horizon.nvim",
 	},
 	{
-		"jose-elias-alvarez/nvim-lsp-ts-utils",
+		"jose-elias-alvarez/typescript.nvim",
 	},
 	{ "tpope/vim-surround" },
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
