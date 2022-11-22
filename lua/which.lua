@@ -9,14 +9,12 @@ lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 -- Lsp
-lvim.builtin.which_key.mappings.l.a = { "<cmd>Telescope lsp_code_actions<cr>", "Code action" }
-lvim.builtin.which_key.mappings.l.c = { "<cmd>TSLspOrganize<cr>", "Organize imports" }
-
--- lvim.builtin.which_key.mappings.l.c = { "<cmd>TSLspOrganize \| require 'lvim.lsp.utils'.format<cr>", "Organize Imports" }
-
-lvim.builtin.which_key.mappings.l.o = { "<cmd>TSLspImportCurrent<cr>", "Import current" }
-lvim.builtin.which_key.mappings.l.O = { "<cmd>TSLspImportAll<cr>", "Import all" }
-lvim.builtin.which_key.mappings.l.R = { "<cmd>TSLspRenameFile<cr>", "Change file path" }
+lvim.builtin.which_key.mappings.l.a = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused variables" }
+lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptOrganizeImports<cr>", "Organize imports" }
+lvim.builtin.which_key.mappings.l.o = { "<cmd>TypescriptAddMissingImports<cr>", "Import current" }
+lvim.builtin.which_key.mappings.l.R = { "<cmd>TypescriptRenameFile<cr>", "Change file path" }
+lvim.builtin.which_key.mappings.l.F = { "<cmd>TypescriptFixAll<cr>", "Fix all" }
+lvim.builtin.which_key.mappings.l.d = { "<cmd>TypescriptGoToSourceDefinition<cr>", "Go to source definition" }
 -- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
 
 -- Buffers hjkl
