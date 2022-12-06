@@ -11,7 +11,7 @@ lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused variables" }
 lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptOrganizeImports<cr>", "Organize imports" }
-lvim.builtin.which_key.mappings.l.o = { "<cmd>TypescriptAddMissingImports<cr>", "Import current" }
+lvim.builtin.which_key.mappings.l.o = { "<cmd>TypescriptAddMissingImports<cr>", "Add missint imports" }
 lvim.builtin.which_key.mappings.l.R = { "<cmd>TypescriptRenameFile<cr>", "Change file path" }
 lvim.builtin.which_key.mappings.l.F = { "<cmd>TypescriptFixAll<cr>", "Fix all" }
 lvim.builtin.which_key.mappings.l.d = { "<cmd>TypescriptGoToSourceDefinition<cr>", "Go to source definition" }
@@ -77,6 +77,7 @@ lvim.builtin.which_key.mappings.s.k = nil
 -- LunarVim
 -- lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
 lvim.builtin.which_key.mappings.L.n = { "<cmd>set rnu!<cr>", "Toggle relative numbers" }
+lvim.builtin.which_key.mappings.L.R = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
 
 -- builtin vim
 lvim.builtin.which_key.mappings["v"] = {

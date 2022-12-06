@@ -1,4 +1,3 @@
--- general
 vim.cmd("set number relativenumber")
 -- vim.lsp.set_log_level("debug")
 
@@ -7,10 +6,6 @@ lvim.format_on_save = false
 lvim.leader = "space"
 
 lvim.colorscheme = "horizon"
--- lvim.colorscheme = "onedarker"
--- require("onedark").setup({
---   style = "deep",
--- })
 vim.opt.scrolloff = 16
 
 lvim.builtin.terminal.active = true
@@ -107,64 +102,3 @@ require("indent_blankline").setup({
 	show_current_context = false,
 	show_trailing_blankline_indent = false,
 })
-
--- debugging
--- lvim.builtin.dap.active = true
--- local dap = require("dap")
-
--- require("dap").set_log_level("TRACE")
--- require("dapui").setup()
-
--- dap.adapters.node2 = {
---   type = "executable",
---   command = "node",
---   args = { "~/.local/share/nvim/dapinstall/jsnode/vscode-node-debug2/out/src/nodeDebug.js" },
--- }
-
--- dap.configurations.typescript = {
---   {
---     type = "node2",
---     request = "launch",
---     -- program = "${workspaceFolder}/${file}",
---     cwd = vim.fn.getcwd(),
---     sourceMaps = true,
---     protocol = "inspector",
---     console = "integratedTerminal",
---   },
--- }
-
--- dap.configurations.javascript = {
---   {
---     type = "node2",
---     request = "launch",
---     -- program = "${workspaceFolder}/${file}",
---     cwd = vim.fn.getcwd(),
---     sourceMaps = true,
---     protocol = "inspector",
---     console = "integratedTerminal",
---   },
--- }
-
--- local dap_install = require("dap-install")
-
--- dap_install.setup({
---   installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
---   verbosely_call_debuggers = true,
--- })
-
--- local dapui = require("dapui")
--- dap.listeners.after.event_initialized["dapui_config"] = function()
---   dapui.open()
--- end
-
--- dap.listeners.before.event_terminated["dapui_config"] = function()
---   dapui.close()
--- end
--- dap.listeners.before.event_exited["dapui_config"] = function()
---   dapui.close()
--- end
-
--- local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
--- for _, debugger in ipairs(dbg_list) do
---   dap_install.config(debugger)
--- end
