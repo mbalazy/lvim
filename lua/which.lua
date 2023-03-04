@@ -10,9 +10,10 @@ lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 -- Lsp
 lvim.builtin.which_key.mappings.l.a = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused variables" }
-lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptOrganizeImports<cr>", "Organize imports" }
-lvim.builtin.which_key.mappings.l.o = { "<cmd>TypescriptAddMissingImports<cr>", "Add missint imports" }
+lvim.builtin.which_key.mappings.l.O = { "<cmd>TypescriptAddMissingImports<cr>", "Add missint imports" }
+lvim.builtin.which_key.mappings.l.o = { "<cmd>TypescriptOrganizeImports<cr>", "Organize imports" }
 lvim.builtin.which_key.mappings.l.R = { "<cmd>TypescriptRenameFile<cr>", "Change file path" }
+lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused imports" }
 lvim.builtin.which_key.mappings.l.F = { "<cmd>TypescriptFixAll<cr>", "Fix all" }
 lvim.builtin.which_key.mappings.l.d = { "<cmd>TypescriptGoToSourceDefinition<cr>", "Go to source definition" }
 -- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
@@ -31,31 +32,31 @@ lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCloseRight<cr>", "Close 
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
-	name = "Treesitter",
-	u = { ":TSUpdate<cr>", "Update" },
-	i = { ":TSConfigInfo<cr>", "Info" },
+  name = "Treesitter",
+  u = { ":TSUpdate<cr>", "Update" },
+  i = { ":TSConfigInfo<cr>", "Info" },
 }
 
 -- Treesitter
 lvim.builtin.which_key.mappings["h"] = {
-	name = "Harpoon",
-	a = { ":lua require('harpoon.mark').add_file()<cr>", "Add file" },
-	o = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open Menu" },
-	k = { ":lua require('harpoon.ui').nav_next() <cr>", "Next" },
-	j = { ":lua require('harpoon.ui').nav_prev() <cr>", "Prev" },
-	h = { ":Telescope harpoon marks<cr>", "Search marks" },
+  name = "Harpoon",
+  a = { ":lua require('harpoon.mark').add_file()<cr>", "Add file" },
+  o = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "Open Menu" },
+  k = { ":lua require('harpoon.ui').nav_next() <cr>", "Next" },
+  j = { ":lua require('harpoon.ui').nav_prev() <cr>", "Prev" },
+  h = { ":Telescope harpoon marks<cr>", "Search marks" },
 }
 
 -- Trouble
 lvim.builtin.which_key.mappings["t"] = {
-	name = "Trouble",
-	t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-	r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-	i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
-	d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
-	q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-	p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
-	w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+  name = "Trouble",
+  t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+  i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
+  d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+  p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+  w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
 }
 
 -- Search
@@ -64,12 +65,13 @@ lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep fi
 lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
-lvim.builtin.which_key.mappings.s.B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep buffer" }
+lvim.builtin.which_key.mappings.s.B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope buffers<cr>", "Find buffer" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.j = {
-	"<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr><cr>",
-	"File browser",
+  "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr><cr>",
+  "File browser",
 }
 lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.s.k = nil
@@ -81,8 +83,8 @@ lvim.builtin.which_key.mappings.L.R = { "<cmd>NvimTreeRefresh<cr>", "Refresh Nvi
 
 -- builtin vim
 lvim.builtin.which_key.mappings["v"] = {
-	name = "Search and replace",
-	f = { ":%s/", "Find each occurrence" },
+  name = "Search and replace",
+  f = { ":%s/", "Find each occurrence" },
 }
 
 -- Git
@@ -94,25 +96,25 @@ lvim.keys.normal_mode["("] = "6j"
 lvim.keys.normal_mode[")"] = "6k"
 
 lvim.builtin.telescope = {
-	active = true,
-	defaults = {
-		layout_strategy = "horizontal",
-		layout_config = {
-			width = 0.99,
-			height = 0.80,
-			preview_cutoff = 120,
-			preview_width = 0.55,
-			prompt_position = "bottom",
-		},
-	},
-	pickers = {
-		git_files = {
-			hidden = true,
-		},
-		live_grep = {
-			hidden = true,
-		},
-	},
+  active = true,
+  defaults = {
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.99,
+      height = 0.80,
+      preview_cutoff = 120,
+      preview_width = 0.55,
+      prompt_position = "bottom",
+    },
+  },
+  pickers = {
+    git_files = {
+      hidden = true,
+    },
+    live_grep = {
+      hidden = true,
+    },
+  },
 }
 
 -- lvim.builtin.telescope.pickers.git_files = {
