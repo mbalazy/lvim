@@ -68,6 +68,7 @@ lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File
 lvim.builtin.which_key.mappings.s.B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
 lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope buffers<cr>", "Find buffer" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope projects<cr>", "Find in projects" }
+lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.j = {
   "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr><cr>",

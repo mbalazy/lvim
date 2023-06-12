@@ -12,6 +12,20 @@
       "console.log(util.inspect($0, false, null, true))"
     ]
   },
+  "Import styled-components": {
+    "prefix": "sc",
+    "body": [
+      "import styled from 'styled-components/native'"
+    ]
+  },
+  "styled component": {
+    "prefix": "ss",
+    "body": [
+      "const $1 = styled$2`",
+      " $3",
+      "`"
+    ]
+  },
   "Console.log": {
     "prefix": "cl",
     "body": [

@@ -1,37 +1,16 @@
 vim.cmd("set number relativenumber")
 -- vim.lsp.set_log_level("debug")
-
 lvim.format_on_save = false
-
 lvim.leader = "space"
 
-lvim.colorscheme = "horizon"
-vim.opt.scrolloff = 16
+lvim.colorscheme = "onedark"
 
-require("tokyonight").setup({
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  light_style = "day", -- The theme is used when the background is set to light
-  transparent = false, -- Enable this to disable setting the background color
-  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-  styles = {
-    -- Style to be applied to different syntax groups
-    -- Value is any valid attr-list value for `:help nvim_set_hl`
-    comments = { italic = true },
-    keywords = { italic = true },
-    functions = {},
-    variables = {},
-    -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "dark", -- style for sidebars, see below
-    floats = "dark", -- style for floating windows
-  },
-  sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-  day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-  hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-  dim_inactive = false, -- dims inactive windows
-  lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-})
+require('onedark').setup {
+  style = 'darker'
+}
+require('onedark').load()
+
+vim.opt.scrolloff = 16
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
@@ -40,10 +19,56 @@ lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
+require("telescope").load_extension("persisted")
 
-lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.treesitter.autotag.enable = true
+-- lvim.builtin.treesitter.highlight.enabled = true
+-- lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.rainbow.enable = true
+
+
+
+lvim.builtin.alpha.dashboard.section.buttons.entries = {
+  { "c", lvim.icons.ui.Fire .. "  Current Sessions", "<CMD>SessionLoad<CR>" },
+  { "s", lvim.icons.ui.Code .. "  Sessions",         "<CMD>Telescope persisted<CR>" },
+  { "f", lvim.icons.ui.FindFile .. "  Find File",    "<CMD>Telescope find_files<CR>" },
+  { "n", lvim.icons.ui.NewFile .. "  New File",      "<CMD>ene!<CR>" },
+  { "p", lvim.icons.ui.Project .. "  Projects ",     "<CMD>Telescope projects<CR>" },
+  { "r", lvim.icons.ui.History .. "  Recent files",  ":Telescope oldfiles <CR>" },
+  { "t", lvim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>" },
+}
+
+require("nvim-treesitter.configs").setup({
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    -- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    -- colors = {}, -- table of hex strings
+  }
+})
+
+require('telescope').setup({
+  extensions = {
+    persisted = {
+      layout_config = { width = 0.55, height = 0.55 }
+    }
+  }
+})
+
+require("persisted").setup({
+  save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
+  silent = false,                                                   -- silent nvim message when sourcing session file
+  use_git_branch = false,                                           -- create session files based on the branch of the git enabled repository
+  autosave = true,                                                  -- automatically save session files when exiting Neovim
+  should_autosave = nil,                                            -- function to determine if a session should be autosaved
+  autoload = true,                                                  -- automatically load the session for the cwd on Neovim startup
+  on_autoload_no_session = nil,                                     -- function to run when `autoload = true` but there is no session to load
+  follow_cwd = true,                                                -- change session file name to match current working directory if it changes
+  allowed_dirs = nil,                                               -- table of dirs that the plugin will auto-save and auto-load from
+  ignored_dirs = nil,                                               -- table of dirs that are ignored when auto-saving and auto-loading
+  telescope = {                                                     -- options for the telescope extension
+    reset_prompt_after_deletion = true,                             -- whether to reset prompt after session deleted
+  },
+})
 
 lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
@@ -73,9 +98,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- load snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
-require("telescope").load_extension('harpoon')
-require("typescript").setup({})
 
+require("typescript").setup({})
 require("linters")
 require("which")
 require("cmpMappings")
@@ -86,16 +110,14 @@ lvim.plugins = {
   },
   {
     "SmiteshP/nvim-gps",
-    requires = "nvim-treesitter/nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "olimorris/persisted.nvim",
+    config = true
   },
   {
     "navarasu/onedark.nvim",
-  },
-  {
-    "ThePrimeagen/harpoon",
-  },
-  {
-    "lunarvim/horizon.nvim",
   },
   {
     "jose-elias-alvarez/typescript.nvim",
@@ -111,14 +133,6 @@ lvim.plugins = {
   -- { "Pocco81/DAPInstall.nvim", branch = "dev" },
   { "David-Kunz/jester" },
   -- { "rcarriga/nvim-dap-ui" },
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "info",
-      })
-    end,
-  },
 }
 
 require("indent_blankline").setup({
