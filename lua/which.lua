@@ -16,6 +16,8 @@ lvim.builtin.which_key.mappings.l.R = { "<cmd>TypescriptRenameFile<cr>", "Change
 lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused imports" }
 lvim.builtin.which_key.mappings.l.F = { "<cmd>TypescriptFixAll<cr>", "Fix all" }
 lvim.builtin.which_key.mappings.l.d = { "<cmd>TypescriptGoToSourceDefinition<cr>", "Go to source definition" }
+lvim.builtin.which_key.mappings.l.g = { "<cmd>TermExec go_back=0 cmd='rf-lerna release' size=10 direction=horizontal <cr>", "rf-lerna release" }
+lvim.builtin.which_key.mappings.l.t = { "<cmd>ToggleTerm size=20 direction=horizontal <cr>", "Toggle term" }
 -- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
 
 -- Buffers hjkl
@@ -62,20 +64,19 @@ lvim.builtin.which_key.mappings["t"] = {
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
+lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "Grep References" }
 lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
+lvim.builtin.which_key.mappings.s.E = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
+  "File browser cur" }
 lvim.builtin.which_key.mappings.s.B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
-lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope buffers<cr>", "Find buffer" }
+lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope buffers<cr>", "Find buffer" }
+-- lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep sessions" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope projects<cr>", "Find in projects" }
-lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
-lvim.builtin.which_key.mappings.s.j = {
-  "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr><cr>",
-  "File browser",
-}
 lvim.builtin.which_key.mappings.s.t = nil
-lvim.builtin.which_key.mappings.s.k = nil
+-- lvim.builtin.which_key.mappings.s.k = nil
 
 -- LunarVim
 -- lvim.builtin.which_key.mappings.L.q = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
@@ -91,6 +92,7 @@ lvim.builtin.which_key.mappings["v"] = {
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
+lvim.builtin.which_key.mappings.g.a = { "<cmd>TermExec go_back=0 cmd='gh run watch' size=20 direction=horizontal <cr>", "gh run watch" }
 
 -- LunarVim keybindings
 lvim.keys.normal_mode["("] = "6j"
@@ -99,13 +101,14 @@ lvim.keys.normal_mode[")"] = "6k"
 lvim.builtin.telescope = {
   active = true,
   defaults = {
-    layout_strategy = "horizontal",
+    path_display = { "truncate" },
+    layout_strategy = "vertical",
     layout_config = {
-      width = 0.99,
-      height = 0.80,
-      preview_cutoff = 120,
-      preview_width = 0.55,
-      prompt_position = "bottom",
+      width = 0.66,
+      height = 0.96,
+      preview_cutoff = 20,
+      -- preview_width = 0.5,
+      prompt_position = "top",
     },
   },
   pickers = {
@@ -117,14 +120,3 @@ lvim.builtin.telescope = {
     },
   },
 }
-
--- lvim.builtin.telescope.pickers.git_files = {
--- 	layout_strategy = "horizontal",
--- 	layout_config = {
--- 		width = 0.90,
--- 		height = 0.80,
--- 		preview_cutoff = 120,
--- 		preview_width = 0.6,
--- 		prompt_position = "bottom",
--- 	},
--- }

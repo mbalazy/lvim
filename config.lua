@@ -3,7 +3,7 @@ vim.cmd("set number relativenumber")
 lvim.format_on_save = false
 lvim.leader = "space"
 
-lvim.colorscheme = "onedark"
+lvim.colorscheme = "tokyodark"
 
 require('onedark').setup {
   style = 'darker'
@@ -14,7 +14,15 @@ vim.opt.scrolloff = 16
 
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.setup.view.width = 54
+
+-- lvim.builtin.nvimtree.setup.view.width = 54
+
+lvim.builtin.nvimtree.setup.view.float.enable = true
+lvim.builtin.nvimtree.setup.view.float.open_win_config.width = 110
+lvim.builtin.nvimtree.setup.view.float.open_win_config.height = 40
+lvim.builtin.nvimtree.setup.view.float.open_win_config.col = 20
+lvim.builtin.nvimtree.setup.view.float.open_win_config.row = 3
+
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 
@@ -22,10 +30,8 @@ lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 require("telescope").load_extension("persisted")
 
 -- lvim.builtin.treesitter.highlight.enabled = true
--- lvim.builtin.treesitter.autotag.enable = true
+lvim.builtin.treesitter.autotag.enable = true
 lvim.builtin.treesitter.rainbow.enable = true
-
-
 
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "c", lvim.icons.ui.Fire .. "  Current Sessions", "<CMD>SessionLoad<CR>" },
@@ -37,22 +43,37 @@ lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "t", lvim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>" },
 }
 
+local rainbow = require 'ts-rainbow'
+
 require("nvim-treesitter.configs").setup({
   rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    -- extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    -- colors = {}, -- table of hex strings
+    query = {
+      'rainbow-parens'
+    },
+    strategy = rainbow.strategy.global,
+    hlgroups = {
+      'TSRainbowRed',
+      'TSRainbowYellow',
+      'TSRainbowBlue',
+      'TSRainbowOrange',
+      'TSRainbowGreen',
+      'TSRainbowViolet',
+      'TSRainbowCyan'
+    },
   }
 })
 
-require('telescope').setup({
+
+require("telescope").setup {
   extensions = {
-    persisted = {
-      layout_config = { width = 0.55, height = 0.55 }
-    }
-  }
-})
+    file_browser = {
+      grouped = true,
+      display_stat = { date = false, size = false, mode = false },
+    },
+  },
+}
+
+require("telescope").load_extension "file_browser"
 
 require("persisted").setup({
   save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
@@ -72,8 +93,7 @@ require("persisted").setup({
 
 lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
 lvim.builtin.telescope.defaults.selection_caret = ">"
-lvim.builtin.telescope.defaults.layout_config.width = 0.9
-lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", "node_modules", ".yarn" }
+-- lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", ".yarn" }
 
 local components = require("lvim.core.lualine.components")
 
@@ -96,47 +116,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- load snippets
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
-
-require("typescript").setup({})
-require("linters")
-require("which")
-require("cmpMappings")
-
-lvim.plugins = {
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-  },
-  {
-    "SmiteshP/nvim-gps",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  {
-    "olimorris/persisted.nvim",
-    config = true
-  },
-  {
-    "navarasu/onedark.nvim",
-  },
-  {
-    "jose-elias-alvarez/typescript.nvim",
-  },
-  { "tpope/vim-surround" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-  },
-  {
-    "p00f/nvim-ts-rainbow",
-  },
-  -- { "Pocco81/DAPInstall.nvim", branch = "dev" },
-  { "David-Kunz/jester" },
-  -- { "rcarriga/nvim-dap-ui" },
-}
-
 require("indent_blankline").setup({
   filetype = { "yaml", "yml" },
   show_current_context = false,
   show_trailing_blankline_indent = false,
 })
+
+-- load snippets
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
+
+require("typescript").setup({})
+require("cmpMappings")
+
+require("linters")
+require("which")
+require("plugins")
