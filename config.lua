@@ -29,9 +29,8 @@ lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 -- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 require("telescope").load_extension("persisted")
 
--- lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.treesitter.autotag.enable = true
-lvim.builtin.treesitter.rainbow.enable = true
+-- lvim.builtin.treesitter.highlight.enabled = false
+-- lvim.builtin.treesitter.autotag.enable = true
 
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "c", lvim.icons.ui.Fire .. "  Current Sessions", "<CMD>SessionLoad<CR>" },
@@ -43,32 +42,34 @@ lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "t", lvim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>" },
 }
 
-local rainbow = require 'ts-rainbow'
-
-require("nvim-treesitter.configs").setup({
-  rainbow = {
-    query = {
-      'rainbow-parens'
-    },
-    strategy = rainbow.strategy.global,
-    hlgroups = {
-      'TSRainbowRed',
-      'TSRainbowYellow',
-      'TSRainbowBlue',
-      'TSRainbowOrange',
-      'TSRainbowGreen',
-      'TSRainbowViolet',
-      'TSRainbowCyan'
-    },
-  }
-})
-
-
 require("telescope").setup {
   extensions = {
     file_browser = {
       grouped = true,
       display_stat = { date = false, size = false, mode = false },
+    },
+  },
+}
+
+lvim.builtin.telescope = {
+  active = true,
+  defaults = {
+    path_display = { "truncate" },
+    layout_strategy = "vertical",
+    layout_config = {
+      width = 0.66,
+      height = 0.96,
+      preview_cutoff = 20,
+      -- preview_width = 0.5,
+      prompt_position = "top",
+    },
+  },
+  pickers = {
+    git_files = {
+      hidden = true,
+    },
+    live_grep = {
+      hidden = true,
     },
   },
 }

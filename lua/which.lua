@@ -16,14 +16,12 @@ lvim.builtin.which_key.mappings.l.R = { "<cmd>TypescriptRenameFile<cr>", "Change
 lvim.builtin.which_key.mappings.l.c = { "<cmd>TypescriptRemoveUnused<cr>", "Remove unused imports" }
 lvim.builtin.which_key.mappings.l.F = { "<cmd>TypescriptFixAll<cr>", "Fix all" }
 lvim.builtin.which_key.mappings.l.d = { "<cmd>TypescriptGoToSourceDefinition<cr>", "Go to source definition" }
-lvim.builtin.which_key.mappings.l.g = { "<cmd>TermExec go_back=0 cmd='rf-lerna release' size=10 direction=horizontal <cr>", "rf-lerna release" }
-lvim.builtin.which_key.mappings.l.t = { "<cmd>ToggleTerm size=20 direction=horizontal <cr>", "Toggle term" }
--- lvim.builtin.which_key.mappings.l.h = { "<cmd>TSLspToggleInlayHints<cr>", "Toggle hints" }
 
 -- Buffers hjkl
 lvim.builtin.which_key.mappings.b.e = nil
 lvim.builtin.which_key.mappings.b.n = nil -- next
 lvim.builtin.which_key.mappings.b.b = nil -- prev
+
 -- lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
 lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
 lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
@@ -34,9 +32,10 @@ lvim.builtin.which_key.mappings.b.l = { "<cmd>BufferLineCloseRight<cr>", "Close 
 
 -- Treesitter
 lvim.builtin.which_key.mappings["T"] = {
-  name = "Treesitter",
-  u = { ":TSUpdate<cr>", "Update" },
-  i = { ":TSConfigInfo<cr>", "Info" },
+  name = "Terminal",
+  r = { ":TermExec go_back=0 size=16 cmd='rf-lerna release' direction=horizontal <cr>", "Rf-lerna release" },
+  t = { ":ToggleTerm size=20 direction=horizontal <cr>", "Toggle terminal" },
+  w = { ":TermExec go_back=0 size=20 cmd='gh run watch'  direction=horizontal <cr>", "Gh watch actions" },
 }
 
 -- Treesitter
@@ -64,7 +63,7 @@ lvim.builtin.which_key.mappings["t"] = {
 -- Search
 lvim.builtin.which_key.mappings.s.q = { "<cmd>Telescope quickfix<cr>", "Quickfix list" }
 lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep files" }
-lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "Grep References" }
+lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references show_line=false<cr>", "Grep References" }
 lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
@@ -92,31 +91,10 @@ lvim.builtin.which_key.mappings["v"] = {
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
-lvim.builtin.which_key.mappings.g.a = { "<cmd>TermExec go_back=0 cmd='gh run watch' size=20 direction=horizontal <cr>", "gh run watch" }
 
 -- LunarVim keybindings
 lvim.keys.normal_mode["("] = "6j"
 lvim.keys.normal_mode[")"] = "6k"
 
-lvim.builtin.telescope = {
-  active = true,
-  defaults = {
-    path_display = { "truncate" },
-    layout_strategy = "vertical",
-    layout_config = {
-      width = 0.66,
-      height = 0.96,
-      preview_cutoff = 20,
-      -- preview_width = 0.5,
-      prompt_position = "top",
-    },
-  },
-  pickers = {
-    git_files = {
-      hidden = true,
-    },
-    live_grep = {
-      hidden = true,
-    },
-  },
-}
+lvim.lsp.buffer_mappings.normal_mode['gr'] = { "<cmd>TroubleToggle lsp_references<cr>",
+  "Go to reference" }
