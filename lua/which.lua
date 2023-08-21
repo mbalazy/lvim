@@ -36,6 +36,7 @@ lvim.builtin.which_key.mappings["T"] = {
   r = { ":TermExec go_back=0 size=16 cmd='rf-lerna release' direction=horizontal <cr>", "Rf-lerna release" },
   t = { ":ToggleTerm size=20 direction=horizontal <cr>", "Toggle terminal" },
   w = { ":TermExec go_back=0 size=20 cmd='gh run watch'  direction=horizontal <cr>", "Gh watch actions" },
+  d = { ":TermExec go_back=0 size=20 cmd='gh dash' direction=horizontal <cr>", "Dash" },
 }
 
 -- Treesitter
@@ -47,6 +48,18 @@ lvim.builtin.which_key.mappings["h"] = {
   j = { ":lua require('harpoon.ui').nav_prev() <cr>", "Prev" },
   h = { ":Telescope harpoon marks<cr>", "Search marks" },
 }
+
+-- -- Octo
+-- lvim.builtin.which_key.mappings["o"] = {
+--   name = "Octo",
+--   t = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+--   r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+--   i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
+--   d = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+--   q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+--   p = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document diagnostics" },
+--   w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+-- }
 
 -- Trouble
 lvim.builtin.which_key.mappings["t"] = {
@@ -69,9 +82,9 @@ lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s.E = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
   "File browser cur" }
-lvim.builtin.which_key.mappings.s.B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
-lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope buffers<cr>", "Find buffer" }
--- lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep sessions" }
+lvim.builtin.which_key.mappings.s['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
+lvim.builtin.which_key.mappings.s.b = { "<cmd>Telescope buffers<cr>", "Find buffer" }
+lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep sessions" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.t = nil
@@ -91,10 +104,13 @@ lvim.builtin.which_key.mappings["v"] = {
 -- Git
 lvim.builtin.which_key.mappings.g.o = { "<cmd>Telescope git_status<cr>", "Git status" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
+lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
 
 -- LunarVim keybindings
 lvim.keys.normal_mode["("] = "6j"
 lvim.keys.normal_mode[")"] = "6k"
+
+lvim.lsp.buffer_mappings.normal_mode[':'] = { "<cmd>FineCmdline<cr>", "Cmd line" }
 
 lvim.lsp.buffer_mappings.normal_mode['gr'] = { "<cmd>TroubleToggle lsp_references<cr>",
   "Go to reference" }

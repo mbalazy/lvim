@@ -1,14 +1,87 @@
+require("plugins")
+
 vim.cmd("set number relativenumber")
+vim.cmd("set cmdheight=0")
 -- vim.lsp.set_log_level("debug")
+
 lvim.format_on_save = false
 lvim.leader = "space"
 
-lvim.colorscheme = "tokyodark"
+vim.cmd([[command! -nargs=0 Session :SessionLoad]])
 
-require('onedark').setup {
-  style = 'darker'
-}
-require('onedark').load()
+vim.cmd([[command! -nargs=0 GoToFile :Telescope find_files]])
+vim.cmd([[command! -nargs=0 GoToCommand :Telescope commands]])
+vim.cmd([[command! -nargs=0 FindFile :Telescope live_grep]])
+
+lvim.colorscheme = 'catppuccin-mocha'
+
+require("catppuccin").setup({
+  flavour = "mocha", -- latte, frappe, macchiato, mocha
+  background = {
+    -- :h background
+    light = "latte",
+    dark = "mocha",
+  },
+  transparent_background = true, -- disables setting the background color.
+  show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
+  term_colors = true,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+  dim_inactive = {
+    enabled = false,             -- dims the background color of inactive window
+    shade = "dark",
+    percentage = 0.15,           -- percentage of the shade to apply to the inactive window
+  },
+  no_italic = true, -- Force no italic
+  no_bold = false, -- Force no bold
+  no_underline = false, -- Force no underline
+  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+      comments = {}, -- Change the style of comments
+      conditionals = {},
+      loops = {},
+      functions = {},
+      keywords = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
+  },
+  color_overrides = {},
+  custom_highlights = {},
+  integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      notify = false,
+      mini = false,
+      -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+  },
+})
+
+
+    -- require("lualine").setup({
+    --   sections = {
+    --     lualine_x = {
+    --       {
+    --         require("lazy.status").updates,
+    --         cond = require("lazy.status").has_updates,
+    --         color = { fg = "ff9e64" },
+    --       },
+    --     },
+    --   },
+    -- })
+
+
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin"
+
+-- vim.cmd.colorscheme "catppuccin"
+
+-- lvim.transparent_window = true
+
+-- lvim.colorscheme = "tokyodark"
 
 vim.opt.scrolloff = 16
 
@@ -92,20 +165,52 @@ require("persisted").setup({
   },
 })
 
-lvim.builtin.telescope.defaults.prompt_prefix = "❯ "
-lvim.builtin.telescope.defaults.selection_caret = ">"
+lvim.builtin.telescope.defaults.prompt_prefix = "  "
+lvim.builtin.telescope.defaults.selection_caret = "> "
 -- lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", ".yarn" }
 
 local components = require("lvim.core.lualine.components")
 
-lvim.builtin.lualine.sections.lualine_b = {
+--
+lvim.builtin.lualine.sections.lualine_a = { 'mode' }
+lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
+
+-- section_separators = { left = '', right = '' },
+
+lvim.builtin.lualine.sections.lualine_b = { 'branch', 'diff' }
+
+lvim.builtin.lualine.sections.lualine_c = {
   { "filename", file_status = true, newfile_status = false, path = 3, shorting_target = 30 },
-  components.branch,
 }
+
 
 lvim.builtin.lualine.sections.lualine_y = {
   components.location,
 }
+
+local fineline = require('fine-cmdline')
+fineline.setup({
+  cmdline = {
+    enable_keymaps = true,
+    smart_history = true,
+    prompt = '  '
+  },
+  popup = {
+    position = {
+      row = '24%',
+      col = '50%',
+    },
+    size = {
+      width = '50%',
+    },
+    border = {
+      style = 'rounded',
+    },
+    win_options = {
+      winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+    },
+  },
+})
 
 -- automatically close the tab/vim when nvim-tree is the last window in the tab
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -131,4 +236,3 @@ require("cmpMappings")
 
 require("linters")
 require("which")
-require("plugins")
