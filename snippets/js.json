@@ -26,10 +26,46 @@
       "`"
     ]
   },
+  "Console.log string": {
+    "prefix": "cll",
+    "body": [
+      "console.log('$1 -> ', $1)"
+    ]
+  },
   "Console.log": {
     "prefix": "cl",
     "body": [
       "console.log($0)"
+    ]
+  },
+  "Import": {
+    "prefix": "im",
+    "body": [
+      "import { $2 } from '$1'"
+    ]
+  },
+  "Export default": {
+    "prefix": "ed",
+    "body": [
+      "export default $1"
+    ]
+  },
+  "Export const": {
+    "prefix": "ec",
+    "body": [
+      "export const $1"
+    ]
+  },
+  "Export": {
+    "prefix": "ex",
+    "body": [
+      "export $1 from '$2'"
+    ]
+  },
+  "const": {
+    "prefix": "c",
+    "body": [
+      "const $1"
     ]
   },
   "return": {

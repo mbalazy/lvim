@@ -1,5 +1,10 @@
 lvim.plugins = {
   {
+    'nvim-treesitter/nvim-treesitter',
+    event = "User FileOpened",
+  },
+  { 'akinsho/bufferline.nvim', version = "*",       dependencies = 'nvim-tree/nvim-web-devicons' },
+  {
     "nvim-telescope/telescope-file-browser.nvim",
   },
   {
@@ -12,13 +17,97 @@ lvim.plugins = {
     "olimorris/persisted.nvim",
     config = true
   },
-  { "catppuccin/nvim",   name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup({
+        api_key_cmd = 'op read op://Personal/Openai/password',
+        openai_params = {
+          model = "gpt-3.5-turbo",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 400,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    "ThePrimeagen/harpoon",
+  },
   {
     "HiPhish/nvim-ts-rainbow2",
+  },
+  -- https://github.com/sindrets/diffview.nvim
+  {
+    "sindrets/diffview.nvim",
+  },
+  -- https://github.com/aaronhallaert/advanced-git-search.nvim#1-search_log_content----search-in-repo-log-content
+  {
+    "aaronhallaert/advanced-git-search.nvim",
+    config = function()
+      require("telescope").setup {
+        extensions = {
+          advanced_git_search = {
+            git_flags = { "-c", "delta.side-by-side=false" },
+            git_diff_flags = {},
+
+            show_builtin_git_pickers = true,
+            diff_plugin = "diffview",
+
+            telescope_theme = {
+              show_custom_functions = {
+                layout_config = { width = 0.4, height = 0.4 },
+              },
+            }
+          },
+          file_browser = {
+            grouped = true,
+            files = true,
+            add_dirs = true,
+            depth = 1,
+            auto_depth = false,
+            select_buffer = false,
+            hidden = { file_browser = false, folder_browser = false },
+            display_stat = false,
+            browse_files = require("telescope._extensions.file_browser.finders").browse_files,
+            browse_folders = require("telescope._extensions.file_browser.finders").browse_folders,
+            hide_parent_dir = true,
+            collapse_dirs = false,
+            quiet = true,
+            dir_icon = "",
+          },
+        }
+      }
+
+      require("telescope").load_extension "file_browser"
+      require("telescope").load_extension("advanced_git_search")
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- to show diff splits and open commits in browser
+      "tpope/vim-fugitive",
+      -- to open commits in browser with fugitive
+      "tpope/vim-rhubarb",
+      -- optional: to replace the diff from fugitive with diffview.nvim
+      -- (fugitive is still needed to open in browser)
+      "sindrets/diffview.nvim",
+    },
   },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    version = '2.10.0',
     opts = {
       height = 15,
       action_keys = {
@@ -48,24 +137,56 @@ lvim.plugins = {
       },
     },
   },
-
   {
     "navarasu/onedark.nvim",
   },
   {
-    "jose-elias-alvarez/typescript.nvim",
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        tsserver_path = nil,
+        separate_diagnostic_server = false,
+        tsserver_plugins = { "@styled/typescript-styled-plugin" },
+      },
+      -- tsserver_file_preferences = {
+      --   includeInlayParameterNameHints = "all",
+      --   includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      --   includeInlayFunctionParameterTypeHints = true,
+      --   includeInlayVariableTypeHints = false,
+      --   includeInlayPropertyDeclarationTypeHints = true,
+      --   includeInlayFunctionLikeReturnTypeHints = false,
+      --   includeInlayEnumMemberValueHints = true,
+      -- },
+    },
   },
   { "tpope/vim-surround" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-  },
+  -- {
+  -- "windwp/nvim-ts-autotag",
+  -- event = "InsertEnter",
+  -- },
   {
     'tiagovla/tokyodark.nvim'
   },
   {
-    "p00f/nvim-ts-rainbow",
+    "vuki656/package-info.nvim",
+    dependencies = "MunifTanjim/nui.nvim",
   },
+  {
+    'gi4c0/lint-node.nvim',
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim' }
+    }
+  },
+  {
+    "Fildo7525/pretty_hover",
+    config = function()
+      require("pretty_hover").setup({})
+    end
+  },
+  -- {
+  --   "p00f/nvim-ts-rainbow",
+  -- },
   { "David-Kunz/jester" },
   {
     'pwntester/octo.nvim',
@@ -76,22 +197,22 @@ lvim.plugins = {
     },
     config = function()
       require "octo".setup({
-        use_local_fs = false,                      -- use local files on right side of reviews
-        enable_builtin = false,                    -- shows a list of builtin actions when no action is provided
+        use_local_fs = false, -- use local files on right side of reviews
+        enable_builtin = false, -- shows a list of builtin actions when no action is provided
         default_remote = { "upstream", "origin" }, -- order to try remotes
-        ssh_aliases = {},                          -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
-        reaction_viewer_hint_icon = "",         -- marker for user reactions
-        user_icon = " ",                        -- user icon
-        timeline_marker = "",                   -- timeline marker
-        timeline_indent = "2",                     -- timeline indentation
-        right_bubble_delimiter = "",            -- bubble delimiter
-        left_bubble_delimiter = "",             -- bubble delimiter
-        github_hostname = "",                      -- GitHub Enterprise host
-        snippet_context_lines = 4,                 -- number or lines around commented lines
-        gh_env = {},                               -- extra environment variables to pass on to GitHub CLI, can be a table or function returning a table
-        timeout = 5000,                            -- timeout for requests between the remote server
+        ssh_aliases = {}, -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
+        reaction_viewer_hint_icon = "", -- marker for user reactions
+        user_icon = " ", -- user icon
+        timeline_marker = "", -- timeline marker
+        timeline_indent = "2", -- timeline indentation
+        right_bubble_delimiter = "", -- bubble delimiter
+        left_bubble_delimiter = "", -- bubble delimiter
+        github_hostname = "", -- GitHub Enterprise host
+        snippet_context_lines = 4, -- number or lines around commented lines
+        gh_env = {}, -- extra environment variables to pass on to GitHub CLI, can be a table or function returning a table
+        timeout = 5000, -- timeout for requests between the remote server
         ui = {
-          use_signcolumn = true,                   -- show "modified" marks on the sign column
+          use_signcolumn = true, -- show "modified" marks on the sign column
         },
         issues = {
           order_by = {
@@ -104,11 +225,11 @@ lvim.plugins = {
         pull_requests = {
           order_by = {
             -- criteria to sort the results of `Octo pr list`
-            field = "CREATED_AT",                  -- either COMMENTS, CREATED_AT or UPDATED_AT (https://docs.github.com/en/graphql/reference/enums#issueorderfield)
+            field = "CREATED_AT",                -- either COMMENTS, CREATED_AT or UPDATED_AT (https://docs.github.com/en/graphql/reference/enums#issueorderfield)
             direction =
-            "DESC"                                 -- either DESC or ASC (https://docs.github.com/en/graphql/reference/enums#orderdirection)
+            "DESC"                               -- either DESC or ASC (https://docs.github.com/en/graphql/reference/enums#orderdirection)
           },
-          always_select_remote_on_create = "false" -- always give prompt to select base remote repo when creating PRs
+          always_select_remote_on_create = false -- always give prompt to select base remote repo when creating PRs
         },
         file_panel = {
           size = 10,       -- changed files panel rows

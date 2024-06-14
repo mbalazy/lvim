@@ -1,109 +1,72 @@
 require("plugins")
+-- vim.lsp.set_log_level("debug")
+vim.g.skip_ts_context_commentstring_module = true
+
+require("bufferline").setup {
+  options = {
+    buffer_close_icon = 'x',
+    close_icon = '',
+  }
+}
 
 vim.cmd("set number relativenumber")
-vim.cmd("set cmdheight=0")
--- vim.lsp.set_log_level("debug")
-
-lvim.format_on_save = false
-lvim.leader = "space"
+vim.cmd("set timeoutlen=150")
+vim.opt.scrolloff = 16
 
 vim.cmd([[command! -nargs=0 Session :SessionLoad]])
-
 vim.cmd([[command! -nargs=0 GoToFile :Telescope find_files]])
 vim.cmd([[command! -nargs=0 GoToCommand :Telescope commands]])
 vim.cmd([[command! -nargs=0 FindFile :Telescope live_grep]])
 
-lvim.colorscheme = 'catppuccin-mocha'
+vim.cmd('highlight clear CursorLine')
+vim.cmd('highlight clear CursorLineNR')
+
+lvim.lsp.installer.setup.automatic_installation.exclude = { 'tsserver' }
+lvim.format_on_save = false
+lvim.leader = "space"
+lvim.colorscheme = 'catppuccin'
+
+-- require("mason-lspconfig").setup {
+--   ensure_installed = {},
+-- }
+require("cmpMappings")
+
+require("linters")
+require("which")
 
 require("catppuccin").setup({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
   background = {
-    -- :h background
     light = "latte",
-    dark = "mocha",
+    dark = "latte",
   },
   transparent_background = true, -- disables setting the background color.
-  show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
-  term_colors = true,            -- sets terminal colors (e.g. `g:terminal_color_0`)
-  dim_inactive = {
-    enabled = false,             -- dims the background color of inactive window
-    shade = "dark",
-    percentage = 0.15,           -- percentage of the shade to apply to the inactive window
-  },
-  no_italic = true, -- Force no italic
-  no_bold = false, -- Force no bold
-  no_underline = false, -- Force no underline
-  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-      comments = {}, -- Change the style of comments
-      conditionals = {},
-      loops = {},
-      functions = {},
-      keywords = {},
-      strings = {},
-      variables = {},
-      numbers = {},
-      booleans = {},
-      properties = {},
-      types = {},
-      operators = {},
-  },
-  color_overrides = {},
-  custom_highlights = {},
-  integrations = {
-      cmp = true,
-      gitsigns = true,
-      nvimtree = true,
-      treesitter = true,
-      notify = false,
-      mini = false,
-      -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-  },
 })
 
-
-    -- require("lualine").setup({
-    --   sections = {
-    --     lualine_x = {
-    --       {
-    --         require("lazy.status").updates,
-    --         cond = require("lazy.status").has_updates,
-    --         color = { fg = "ff9e64" },
-    --       },
-    --     },
-    --   },
-    -- })
-
-
--- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
-
--- vim.cmd.colorscheme "catppuccin"
-
--- lvim.transparent_window = true
-
--- lvim.colorscheme = "tokyodark"
-
-vim.opt.scrolloff = 16
-
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.side = "left"
 
--- lvim.builtin.nvimtree.setup.view.width = 54
+lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.setup.view.float.enable = false
+lvim.builtin.nvimtree.setup.view.float.open_win_config = {
+  relative = "win",
+  border = "rounded",
+  width = 54,
+  height = 32,
+  -- bufpos={50,10}
+  row = 3,
+  col = 3,
+}
 
-lvim.builtin.nvimtree.setup.view.float.enable = true
-lvim.builtin.nvimtree.setup.view.float.open_win_config.width = 110
-lvim.builtin.nvimtree.setup.view.float.open_win_config.height = 40
-lvim.builtin.nvimtree.setup.view.float.open_win_config.col = 20
-lvim.builtin.nvimtree.setup.view.float.open_win_config.row = 3
+-- lvim.builtin.nvimtree.setup.view.float.open_win_config.width = 110
+-- lvim.builtin.nvimtree.setup.view.float.open_win_config.height = 40
+-- lvim.builtin.nvimtree.setup.view.float.open_win_config.col = 20
+-- lvim.builtin.nvimtree.setup.view.float.open_win_config.row = 3
 
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
 
--- lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 require("telescope").load_extension("persisted")
-
--- lvim.builtin.treesitter.highlight.enabled = false
--- lvim.builtin.treesitter.autotag.enable = true
+require("telescope").load_extension("package_info")
 
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "c", lvim.icons.ui.Fire .. "  Current Sessions", "<CMD>SessionLoad<CR>" },
@@ -115,26 +78,33 @@ lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "t", lvim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>" },
 }
 
-require("telescope").setup {
-  extensions = {
-    file_browser = {
-      grouped = true,
-      display_stat = { date = false, size = false, mode = false },
-    },
-  },
-}
+local actions = require("lvim.utils.modules").require_on_exported_call "telescope.actions"
+local fb_actions = require "telescope".extensions.file_browser.actions
 
 lvim.builtin.telescope = {
   active = true,
   defaults = {
     path_display = { "truncate" },
-    layout_strategy = "vertical",
+    layout_strategy = "horizontal",
     layout_config = {
-      width = 0.66,
-      height = 0.96,
+      width = 0.85,
+      height = 0.8,
       preview_cutoff = 20,
-      -- preview_width = 0.5,
-      prompt_position = "top",
+      preview_width = 0.5,
+      prompt_position = "bottom",
+    },
+    mappings = {
+      n = {
+        ["q"] = actions.close,
+        ["h"] = fb_actions.goto_parent_dir,
+        ["l"] = actions.select_default,
+        ["u"] = fb_actions.toggle_respect_gitignore,
+        ["U"] = fb_actions.toggle_hidden,
+        ["F"] = fb_actions.toggle_browser,
+        ["f"] = function()
+          require('telescope.builtin').git_files()
+        end
+      },
     },
   },
   pickers = {
@@ -146,8 +116,6 @@ lvim.builtin.telescope = {
     },
   },
 }
-
-require("telescope").load_extension "file_browser"
 
 require("persisted").setup({
   save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
@@ -168,14 +136,56 @@ require("persisted").setup({
 lvim.builtin.telescope.defaults.prompt_prefix = "  "
 lvim.builtin.telescope.defaults.selection_caret = "> "
 -- lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", ".yarn" }
-
-local components = require("lvim.core.lualine.components")
-
 --
-lvim.builtin.lualine.sections.lualine_a = { 'mode' }
+require 'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  },
+  rainbow = {
+    enable = false,
+    -- list of languages you want to disable the plugin for
+    -- disable = { 'jsx', 'cpp' },
+    -- Which query to use for finding delimiters
+    -- query = 'rainbow-parens',
+    -- Highlight the entire buffer all at once
+    strategy = require('ts-rainbow').strategy.global,
+  },
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "json", "dockerfile", "tsx" },
+}
+
+
+-- local components = require("lvim.core.lualine.components")
+lvim.builtin.lualine.sections.lualine_a = {}
 lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
 
 -- section_separators = { left = '', right = '' },
+
+vim.cmd("set cmdheight=0")
+local function searchCount()
+  local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99
+  local searchCurrent = search.current
+  local searchTotal = search.total
+
+  if searchCurrent > 0 then
+    return "/" .. vim.fn.getreg("/") .. " [" .. searchCurrent .. "/" .. searchTotal .. "]"
+  else
+    return ""
+  end
+end
+
+local package_info = require("package-info")
+
+local function getPackageInfoStatus()
+  return package_info.get_status()
+end
 
 lvim.builtin.lualine.sections.lualine_b = { 'branch', 'diff' }
 
@@ -183,9 +193,11 @@ lvim.builtin.lualine.sections.lualine_c = {
   { "filename", file_status = true, newfile_status = false, path = 3, shorting_target = 30 },
 }
 
+lvim.builtin.lualine.sections.lualine_x = { 'diagnostics', { searchCount } }
 
 lvim.builtin.lualine.sections.lualine_y = {
-  components.location,
+  'location',
+  { getPackageInfoStatus }
 }
 
 local fineline = require('fine-cmdline')
@@ -228,11 +240,35 @@ require("indent_blankline").setup({
   show_trailing_blankline_indent = false,
 })
 
+require('package-info').setup(
+  {
+    colors = {
+      up_to_date = "#3C4048", -- Text color for up to date dependency virtual text
+      outdated = "#d19a66",   -- Text color for outdated dependency virtual text
+    },
+    icons = {
+      enable = true, -- Whether to display icons
+      style = {
+        up_to_date = "|  ", -- Icon for up to date dependencies
+        outdated = "|  ", -- Icon for outdated dependencies
+      },
+    },
+    autostart = true,               -- Whether to autostart when `package.json` is opened
+    hide_up_to_date = true,         -- It hides up to date versions when displaying virtual text
+    hide_unstable_versions = false, -- It hides unstable versions from version list e.g next-11.1.3-canary3
+    -- Can be `npm`, `yarn`, or `pnpm`. Used for `delete`, `install` etc...
+    -- The plugin will try to auto-detect the package manager based on
+    -- `yarn.lock` or `package-lock.json`. If none are found it will use the
+    -- provided one, if nothing is provided it will use `yarn`
+    package_manager = "npm"
+  }
+)
+
+require("lint-node").setup({
+  command = "npm run lint:cmd", -- or any other command
+  key = "t",
+  debug = true
+})
+
 -- load snippets
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
-
-require("typescript").setup({})
-require("cmpMappings")
-
-require("linters")
-require("which")
+-- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
