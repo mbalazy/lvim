@@ -48,11 +48,9 @@ lvim.plugins = {
   {
     "HiPhish/nvim-ts-rainbow2",
   },
-  -- https://github.com/sindrets/diffview.nvim
   {
     "sindrets/diffview.nvim",
   },
-  -- https://github.com/aaronhallaert/advanced-git-search.nvim#1-search_log_content----search-in-repo-log-content
   {
     "aaronhallaert/advanced-git-search.nvim",
     config = function()
