@@ -45,6 +45,13 @@ formatters.setup({
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
   {
+    exe = "jsonlint",
+    filetypes = {
+      "json",
+      "jsonc",
+    },
+  },
+  {
     exe = "eslint_d",
     filetypes = {
       "javascriptreact",

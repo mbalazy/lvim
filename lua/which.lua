@@ -98,7 +98,6 @@ lvim.builtin.which_key.mappings.s.t = nil
 lvim.builtin.which_key.mappings.L.n = { "<cmd>set rnu!<cr>", "Toggle relative numbers" }
 lvim.builtin.which_key.mappings.L.R = { "<cmd>NvimTreeRefresh<cr>", "Refresh NvimTree" }
 
--- builtin vim
 lvim.builtin.which_key.mappings["v"] = {
   name = "Search and replace",
   f = { ":%s/", "Find each occurrence" },

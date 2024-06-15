@@ -1,10 +1,5 @@
 lvim.plugins = {
   {
-    'nvim-treesitter/nvim-treesitter',
-    event = "User FileOpened",
-  },
-  { 'akinsho/bufferline.nvim', version = "*",       dependencies = 'nvim-tree/nvim-web-devicons' },
-  {
     "nvim-telescope/telescope-file-browser.nvim",
   },
   {
