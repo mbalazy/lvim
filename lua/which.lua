@@ -85,7 +85,7 @@ lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find f
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
-lvim.builtin.which_key.mappings.s['?'] = { "<cmd>Telescope current_buffer_fuzzy_find default_text=console.log<cr>", "Grep current buffer" }
+lvim.builtin.which_key.mappings.s['?'] = { "<cmd>Telescope current_buffer_fuzzy_find default_text=console.log<cr>", "Grep for console.log" }
 lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep sessions" }
 lvim.builtin.which_key.mappings.s.P = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope find_files default_text=package<cr>", "Find for package.json" }
@@ -113,20 +113,10 @@ lvim.builtin.which_key.mappings["i"] = {
 }
 
 -- Git
---
--- lvim.builtin.which_key.mappings["g"] = {
---   name = "Search and replace",
---   f = { ":%s/", "Find each occurrence" },
--- }
 lvim.builtin.which_key.mappings.g.a = { "<cmd>AdvancedGitSearch<cr>", "Advanced Search" }
 lvim.builtin.which_key.mappings.g.S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr><cr>", "Stage Buffer" }
-
-lvim.builtin.which_key.mappings.g.f = {
-  name = "Search",
-  s = { "<cmd>Telescope git_status<cr>", "Search git status" },
-  S = { "<cmd>Telescope git_stash<cr>", "Search git stash" },
-}
-
+lvim.builtin.which_key.mappings.g.f = { "<cmd>Telescope git_status<cr>", "Git status" }
+lvim.builtin.which_key.mappings.g.F = { "<cmd>Telescope git_stash<cr>", "Git stash" }
 lvim.builtin.which_key.mappings.g.d = {
   name = "Diffview",
   a = { "<cmd>DiffviewOpen<cr>", "Open    Diffview (merge conflicts)" },
@@ -136,10 +126,6 @@ lvim.builtin.which_key.mappings.g.d = {
 }
 lvim.builtin.which_key.mappings.g.x = { "<cmd>DiffviewClose<cr>", "Close Diffview" }
 lvim.builtin.which_key.mappings.g.P = { "<cmd>Git push<cr>", "Git push" }
-
--- LunarVim keybindings
-lvim.keys.normal_mode["("] = "6j"
-lvim.keys.normal_mode[")"] = "6k"
 
 lvim.lsp.buffer_mappings.normal_mode[':'] = { "<cmd>FineCmdline<cr>", "Cmd line" }
 

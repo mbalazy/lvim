@@ -45,7 +45,7 @@ require("catppuccin").setup({
 
 lvim.builtin.terminal.active = true
 
-lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.setup.view.width = 46
 lvim.builtin.nvimtree.setup.view.float.enable = false
 lvim.builtin.nvimtree.setup.view.float.open_win_config = {
   relative = "win",
@@ -85,12 +85,14 @@ lvim.builtin.telescope = {
   active = true,
   defaults = {
     path_display = { "truncate" },
-    layout_strategy = "horizontal",
+    -- layout_strategy = "vertical",
+    -- layout_strategy = "horizontal",
+    layout_strategy = "flex",
     layout_config = {
       width = 0.85,
       height = 0.8,
       preview_cutoff = 20,
-      preview_width = 0.5,
+      -- preview_width = 0.5,
       prompt_position = "bottom",
     },
     mappings = {

@@ -12,13 +12,31 @@
       "console.log(util.inspect($0, false, null, true))"
     ]
   },
+  "Async": {
+    "prefix": "as",
+    "body": [
+      "async $1"
+    ]
+  },
+  "Await": {
+    "prefix": "a",
+    "body": [
+      "await $1"
+    ]
+  },
+  "Add todo": {
+    "prefix": "t",
+    "body": [
+      "// TODO:$1"
+    ]
+  },
   "Import styled-components": {
     "prefix": "sc",
     "body": [
       "import styled from 'styled-components/native'"
     ]
   },
-  "styled component": {
+  "Styled component": {
     "prefix": "ss",
     "body": [
       "const $1 = styled$2`",
@@ -26,7 +44,7 @@
       "`"
     ]
   },
-  "Console.log string": {
+  "Console.log with a string": {
     "prefix": "cll",
     "body": [
       "console.log('$1 -> ', $1)"
