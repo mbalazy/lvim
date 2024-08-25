@@ -4,6 +4,7 @@ vim.g.skip_ts_context_commentstring_module = true
 
 require("bufferline").setup {
   options = {
+    -- enable = false,
     buffer_close_icon = 'x',
     close_icon = '',
   }
@@ -11,9 +12,10 @@ require("bufferline").setup {
 
 vim.cmd("set number relativenumber")
 vim.cmd("set timeoutlen=150")
+vim.cmd("set viminfo='100,<50,s10,h,%")
 vim.opt.scrolloff = 16
 
-vim.cmd([[command! -nargs=0 Session :SessionLoad]])
+-- vim.cmd([[command! -nargs=0 Session :lua MiniSessions.read()]])
 vim.cmd([[command! -nargs=0 GoToFile :Telescope find_files]])
 vim.cmd([[command! -nargs=0 GoToCommand :Telescope commands]])
 vim.cmd([[command! -nargs=0 FindFile :Telescope live_grep]])
@@ -21,7 +23,6 @@ vim.cmd([[command! -nargs=0 FindFile :Telescope live_grep]])
 vim.cmd('highlight clear CursorLine')
 vim.cmd('highlight clear CursorLineNR')
 
-lvim.lsp.installer.setup.automatic_installation.exclude = { 'tsserver' }
 lvim.format_on_save = false
 lvim.leader = "space"
 lvim.colorscheme = 'catppuccin'
@@ -64,19 +65,31 @@ lvim.builtin.nvimtree.setup.view.float.open_win_config = {
 
 lvim.builtin.nvimtree.setup.reload_on_bufenter = true
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
-
-require("telescope").load_extension("persisted")
 require("telescope").load_extension("package_info")
 
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
-  { "c", lvim.icons.ui.Fire .. "  Current Sessions", "<CMD>SessionLoad<CR>" },
-  { "s", lvim.icons.ui.Code .. "  Sessions",         "<CMD>Telescope persisted<CR>" },
-  { "f", lvim.icons.ui.FindFile .. "  Find File",    "<CMD>Telescope find_files<CR>" },
-  { "n", lvim.icons.ui.NewFile .. "  New File",      "<CMD>ene!<CR>" },
-  { "p", lvim.icons.ui.Project .. "  Projects ",     "<CMD>Telescope projects<CR>" },
-  { "r", lvim.icons.ui.History .. "  Recent files",  ":Telescope oldfiles <CR>" },
-  { "t", lvim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>" },
+  { "s", lvim.icons.ui.Code .. "  Sessions",        "<CMD>SessionManager<CR>" },
+  { "f", lvim.icons.ui.FindFile .. "  Find File",   "<CMD>Telescope find_files<CR>" },
+  { "n", lvim.icons.ui.NewFile .. "  New File",     "<CMD>ene!<CR>" },
+  { "p", lvim.icons.ui.Project .. "  Projects ",    "<CMD>Telescope projects<CR>" },
+  { "r", lvim.icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>" },
+  { "t", lvim.icons.ui.FindText .. "  Find Text",   "<CMD>Telescope live_grep<CR>" },
 }
+
+local config = require('session_manager.config')
+require('session_manager').setup({
+  autoload_mode = { config.AutoloadMode.GitSession, config.AutoloadMode.CurrentDir }, -- Define what to do when Neovim is started without arguments. See "Autoload mode" section below.
+  autosave_last_session = true,                                                       -- Automatically save last session on exit and on session switch.
+  autosave_ignore_not_normal = true,                                                  -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+  -- autosave_ignore_dirs = {}, -- A list of directories where the session will not be autosaved.
+  -- autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+  --   'gitcommit',
+  --   'gitrebase',
+  -- },
+  -- autosave_ignore_buftypes = {}, -- All buffers of these bufer types will be closed before the session is saved.
+  -- autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+  -- max_path_length = 80,  -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+})
 
 local actions = require("lvim.utils.modules").require_on_exported_call "telescope.actions"
 local fb_actions = require "telescope".extensions.file_browser.actions
@@ -89,10 +102,13 @@ lvim.builtin.telescope = {
     -- layout_strategy = "horizontal",
     layout_strategy = "flex",
     layout_config = {
+      flip_columns = 130,
       width = 0.85,
-      height = 0.8,
+      height = 0.88,
       preview_cutoff = 20,
-      -- preview_width = 0.5,
+      horizontal = {
+        preview_width = 0.5,
+      },
       prompt_position = "bottom",
     },
     mappings = {
@@ -119,22 +135,6 @@ lvim.builtin.telescope = {
   },
 }
 
-require("persisted").setup({
-  save_dir = vim.fn.expand(vim.fn.stdpath("data") .. "/sessions/"), -- directory where session files are saved
-  silent = false,                                                   -- silent nvim message when sourcing session file
-  use_git_branch = false,                                           -- create session files based on the branch of the git enabled repository
-  autosave = true,                                                  -- automatically save session files when exiting Neovim
-  should_autosave = nil,                                            -- function to determine if a session should be autosaved
-  autoload = true,                                                  -- automatically load the session for the cwd on Neovim startup
-  on_autoload_no_session = nil,                                     -- function to run when `autoload = true` but there is no session to load
-  follow_cwd = true,                                                -- change session file name to match current working directory if it changes
-  allowed_dirs = nil,                                               -- table of dirs that the plugin will auto-save and auto-load from
-  ignored_dirs = nil,                                               -- table of dirs that are ignored when auto-saving and auto-loading
-  telescope = {                                                     -- options for the telescope extension
-    reset_prompt_after_deletion = true,                             -- whether to reset prompt after session deleted
-  },
-})
-
 lvim.builtin.telescope.defaults.prompt_prefix = "  "
 lvim.builtin.telescope.defaults.selection_caret = "> "
 -- lvim.builtin.telescope.defaults.file_ignore_patterns = { "NvimTree", ".yarn" }
@@ -144,13 +144,13 @@ require 'nvim-treesitter.configs'.setup {
     enable = true,
   },
   rainbow = {
-    enable = false,
+    enable = true,
     -- list of languages you want to disable the plugin for
     -- disable = { 'jsx', 'cpp' },
     -- Which query to use for finding delimiters
-    query = 'rainbow-parens',
+    -- query = 'rainbow-parens',
     -- Highlight the entire buffer all at once
-    strategy = require('ts-rainbow').strategy.global,
+    -- strategy = require('ts-rainbow').strategy.global,
   },
   highlight = {
     enable = true,
@@ -163,10 +163,7 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "json", "dockerfile", "tsx" },
 }
 
-
--- local components = require("lvim.core.lualine.components")
-lvim.builtin.lualine.sections.lualine_a = {}
-lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
+lvim.lsp.installer.setup.automatic_installation.exclude = { 'tsserver' }
 
 -- section_separators = { left = '', right = '' },
 
@@ -189,14 +186,23 @@ local function getPackageInfoStatus()
   return package_info.get_status()
 end
 
+-- local components = require("lvim.core.lualine.components")
+
+-- lvim.builtin.lualine.winbar = {
+--   lualine_a = { {
+--     'buffers',
+--     section_separators = { left = '', right = '' },
+--   },
+--   },
+-- }
+
 lvim.builtin.lualine.sections.lualine_b = { 'branch', 'diff' }
+lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
 
 lvim.builtin.lualine.sections.lualine_c = {
   { "filename", file_status = true, newfile_status = false, path = 3, shorting_target = 30 },
 }
-
 lvim.builtin.lualine.sections.lualine_x = { 'diagnostics', { searchCount } }
-
 lvim.builtin.lualine.sections.lualine_y = {
   'location',
   { getPackageInfoStatus }
@@ -270,6 +276,26 @@ require("lint-node").setup({
   command = "npm run lint:cmd", -- or any other command
   key = "t",
   debug = true
+})
+
+-- Call the setup function
+require("pair-ls").setup({
+  -- The pair-ls command to run
+  cmd = { "pair-ls", "lsp", "-port", "8080" },
+
+  -- The function configures the root directory for the server
+  root_dir = function(fname, util)
+    return util.root_pattern(".git", ".hg")(fname) or vim.loop.cwd()
+  end,
+
+  -- Pass a function here to run custom logic on attach
+  on_attach = function(client, bufnr) end,
+
+  -- See :help vim.lsp.start_client
+  flags = {
+    allow_incremental_sync = true,
+    debounce_text_changes = nil,
+  },
 })
 
 -- load snippets

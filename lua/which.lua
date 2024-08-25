@@ -8,7 +8,6 @@ lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["≤"] = ":BufferLineMovePrev<CR>"
 lvim.keys.normal_mode["≥"] = ":BufferLineMoveNext<CR>"
 
-
 lvim.lsp.buffer_mappings.normal_mode['K'] = { ":lua require('pretty_hover').hover()<cr>", "Hover" }
 
 lvim.builtin.which_key.mappings.B = { "<cmd>Telescope buffers<cr>", "Find buffer" }
@@ -19,10 +18,10 @@ lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 
--- Lsp
+-- Lsp 
 lvim.lsp.buffer_mappings.normal_mode['gr'] = { "<cmd>Trouble lsp_references<cr>", "Go to reference" }
 lvim.builtin.which_key.mappings.l.a = { "<cmd>TSToolsRemoveUnused<cr>", "Remove unused variables" }
-lvim.builtin.which_key.mappings.l.O = { "<cmd>TSToolsAddMissingImports<cr>", "Add missint imports" }
+lvim.builtin.which_key.mappings.l.O = { "<cmd>TSToolsAddMissingImports<cr>", "Add missing imports" }
 lvim.builtin.which_key.mappings.l.o = { "<cmd>TSToolsOrganizeImports<cr>", "Organize imports" }
 lvim.builtin.which_key.mappings.l.R = { "<cmd>TSToolsRenameFile<cr>", "Change file path" }
 lvim.builtin.which_key.mappings.l.c = { "<cmd>TSToolsRemoveUnusedImports<cr>", "Remove unused imports" }
@@ -34,9 +33,7 @@ lvim.builtin.which_key.mappings.b.e = nil
 lvim.builtin.which_key.mappings.b.n = nil -- next
 lvim.builtin.which_key.mappings.b.b = nil -- prev
 
--- lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current buffer" }
-lvim.builtin.which_key.mappings.b.j = { "<cmd>BufferLineMovePrev<cr>", "Move buffer prev" }
-lvim.builtin.which_key.mappings.b.k = { "<cmd>BufferLineMoveNext<cr>", "Move buffer next" }
+lvim.builtin.which_key.mappings.b.a = { "<cmd>BufferLineCloseOthers<cr>", "Close all but current buffer" }
 lvim.builtin.which_key.mappings.b.p = { "<cmd>BufferLineTogglePin<cr>", "Toggle pin" }
 
 lvim.builtin.which_key.mappings.b.h = { "<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left" }
@@ -59,8 +56,8 @@ lvim.builtin.which_key.mappings["t"] = {
   i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
   d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
   q = { "<cmd>Trouble quickfix<cr>", "Quickfix" },
-  p = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Document diagnostics" },
-  w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Workspace diagnostics" },
+  w = { "<cmd>Trouble diagnostics win.type = split win.position=right filter.severity = vim.diagnostic.severity.ERROR<cr>", "Workspace show errors" },
+  W = { "<cmd>Trouble diagnostics win.type = split win.position=bottom<cr>", "Workspace diagnostic" },
 }
 
 
@@ -86,7 +83,6 @@ lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
 lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
 lvim.builtin.which_key.mappings.s['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
 lvim.builtin.which_key.mappings.s['?'] = { "<cmd>Telescope current_buffer_fuzzy_find default_text=console.log<cr>", "Grep for console.log" }
-lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope persisted<cr>", "Grep sessions" }
 lvim.builtin.which_key.mappings.s.P = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope find_files default_text=package<cr>", "Find for package.json" }
 lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
@@ -104,7 +100,7 @@ lvim.builtin.which_key.mappings["v"] = {
 }
 
 lvim.builtin.which_key.mappings["i"] = {
-  name = "Package Info",
+  name = "package.json info",
   u = { ":PackageInfoUpdate<cr>", "Update" },
   d = { ":PackageInfoDelete<cr>", "Delete" },
   i = { ":PackageInfoInstall<cr>", "Install" },
