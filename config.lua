@@ -70,10 +70,10 @@ require("telescope").load_extension("package_info")
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "s", lvim.icons.ui.Code .. "  Sessions",        "<CMD>SessionManager<CR>" },
   { "f", lvim.icons.ui.FindFile .. "  Find File",   "<CMD>Telescope find_files<CR>" },
+  { "g", lvim.icons.ui.FindText .. "  Grep By",     "<CMD>Telescope live_grep<CR>" },
   { "n", lvim.icons.ui.NewFile .. "  New File",     "<CMD>ene!<CR>" },
   { "p", lvim.icons.ui.Project .. "  Projects ",    "<CMD>Telescope projects<CR>" },
   { "r", lvim.icons.ui.History .. "  Recent files", ":Telescope oldfiles <CR>" },
-  { "t", lvim.icons.ui.FindText .. "  Find Text",   "<CMD>Telescope live_grep<CR>" },
 }
 
 local config = require('session_manager.config')
@@ -160,7 +160,7 @@ require 'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-  ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "json", "dockerfile", "tsx" },
+  ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "json", "dockerfile", "tsx", "vue" },
 }
 
 lvim.lsp.installer.setup.automatic_installation.exclude = { 'tsserver' }
@@ -297,6 +297,5 @@ require("pair-ls").setup({
     debounce_text_changes = nil,
   },
 })
-
 -- load snippets
 -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })

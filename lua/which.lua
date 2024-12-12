@@ -13,7 +13,8 @@ lvim.lsp.buffer_mappings.normal_mode['K'] = { ":lua require('pretty_hover').hove
 lvim.builtin.which_key.mappings.B = { "<cmd>Telescope buffers<cr>", "Find buffer" }
 
 -- Git files instead of find_files
-lvim.builtin.which_key.mappings.f = { "<cmd>Telescope git_files show_untracked=true<cr>", "Find File" }
+lvim.builtin.which_key.mappings.f = { "<cmd>Telescope git_files show_untracked=true<cr>", "Find git files" }
+lvim.builtin.which_key.mappings.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.n = { ":noh<CR>", "Clear search" }
 lvim.builtin.which_key.mappings.q = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
@@ -56,7 +57,7 @@ lvim.builtin.which_key.mappings["t"] = {
   i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
   d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
   q = { "<cmd>Trouble quickfix<cr>", "Quickfix" },
-  w = { "<cmd>Trouble diagnostics win.type = split win.position=right filter.severity = vim.diagnostic.severity.ERROR<cr>", "Workspace show errors" },
+  w = { "<cmd>Trouble diagnostics win.type = split win.position=bottom filter.severity = vim.diagnostic.severity.ERROR<cr>", "Workspace show errors" },
   W = { "<cmd>Trouble diagnostics win.type = split win.position=bottom<cr>", "Workspace diagnostic" },
 }
 
@@ -80,12 +81,12 @@ lvim.builtin.which_key.mappings.s.f = { "<cmd>Telescope live_grep<cr>", "Grep fi
 lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references show_line=false<cr>", "Grep References" }
 lvim.builtin.which_key.mappings.s.F = { "<cmd>Telescope find_files<cr>", "Find files" }
 lvim.builtin.which_key.mappings.s.m = { "<cmd>Telescope marks<cr>", "Marks" }
-lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope file_browser<cr>", "File browser" }
+lvim.builtin.which_key.mappings.s.e = { "<cmd>Telescope media_files<cr>", "Browse media" }
 lvim.builtin.which_key.mappings.s['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep current buffer" }
 lvim.builtin.which_key.mappings.s['?'] = { "<cmd>Telescope current_buffer_fuzzy_find default_text=console.log<cr>", "Grep for console.log" }
 lvim.builtin.which_key.mappings.s.P = { "<cmd>Telescope projects<cr>", "Find in projects" }
 lvim.builtin.which_key.mappings.s.p = { "<cmd>Telescope find_files default_text=package<cr>", "Find for package.json" }
-lvim.builtin.which_key.mappings.s.S = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
+lvim.builtin.which_key.mappings.s.s = { "<cmd>Telescope grep_string<cr>", "Grep strig" }
 lvim.builtin.which_key.mappings.s.t = nil
 -- lvim.builtin.which_key.mappings.s.k = nil
 

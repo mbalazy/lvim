@@ -22,6 +22,9 @@ lvim.plugins = {
     priority = 1000
   },
   {
+    'nvim-telescope/telescope-media-files.nvim'
+  },
+  {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
@@ -88,11 +91,20 @@ lvim.plugins = {
             quiet = true,
             dir_icon = "",
           },
+
+          media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = { "png", "webp", "webm", "jpg", "jpeg" },
+            -- find command (defaults to `fd`)
+            find_cmd = "rg"
+          }
         }
       }
 
       require("telescope").load_extension "file_browser"
       require("telescope").load_extension("advanced_git_search")
+      require('telescope').load_extension('media_files')
     end,
     dependencies = {
       "nvim-telescope/telescope.nvim",
@@ -145,6 +157,7 @@ lvim.plugins = {
     },
   },
   { "tpope/vim-surround" },
+  { "posva/vim-vue" },
   {
     'tiagovla/tokyodark.nvim'
   },

@@ -12,6 +12,7 @@
         "language": [
           "javascript",
           "typescript",
+          "vue",
           "javascriptreact",
           "typescriptreact"
         ],

@@ -17,6 +17,7 @@ formatters.setup({
       "markdown",
       "css",
       "scss",
+      "vue",
       "yaml",
       "graphql",
     },
