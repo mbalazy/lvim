@@ -297,5 +297,40 @@ require("pair-ls").setup({
     debounce_text_changes = nil,
   },
 })
+
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local lspconfig = require("lspconfig")
+-- local servers = {
+--   "volar",
+-- }
+
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup({
+--     capabilities = capabilities,
+--   })
+-- end
+
+-- require("typescript-tools").setup({
+--   filetypes = {
+--     "javascript",
+--     "javascriptreact",
+--     "typescript",
+--     "typescriptreact",
+--     "vue",
+--   },
+--   settings = {
+--     capabilities = capabilities,
+--     root_dir = root_pattern_exclude({
+--       root = { "package.json" },
+--       exclude = { "deno.json", "deno.jsonc" },
+--     }),
+--     single_file_support = false,
+--     tsserver_plugins = {
+--       "@vue/typescript-plugin",
+--     },
+--   },
+-- })
+
+
 -- load snippets
 -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
