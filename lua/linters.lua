@@ -1,10 +1,3 @@
--- disabling tsserver language server formatting capabilities if you are using prettier/prettierd as formatter
--- lvim.lsp.on_attach_callback = function(client, _)
---   if client.name ~= "tsserver" then
---     return
---   end
--- end
-
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
   {
